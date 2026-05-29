@@ -96,8 +96,8 @@
     /* form */
     .f-input { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.10); color:#fff; font-family:'Montserrat',sans-serif; font-size:.82rem; padding:.82rem 1.1rem; width:100%; outline:none; transition:border-color 400ms ease; }
     .f-input:focus { border-color:rgba(212,175,55,.5); }
-    .f-input::placeholder { color:rgba(255,255,255,.22); }
-    .f-label { font-family:'Michroma',sans-serif; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.35); display:block; margin-bottom:.4rem; }
+    .f-input::placeholder { color:rgba(255,255,255,.30); }
+    .f-label { font-family:'Michroma',sans-serif; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.45); display:block; margin-bottom:.4rem; }
 
     /* policy pill */
     .policy-pill { display:flex; gap:.75rem; align-items:flex-start; padding:1rem 1.2rem; background:rgba(255,255,255,.02); border:1px solid rgba(212,175,55,.10); }
@@ -105,8 +105,6 @@
     /* hero image */
     .hero-img-wrap { position:absolute; inset:0; overflow:hidden; }
     .hero-img-wrap img { width:100%; height:100%; object-fit:cover; opacity:.28; filter:saturate(.5); transform:scale(1.06); }
-
-    /* rings — removed */
 
     /* shimmer */
     @keyframes shimmer { 0%{background-position:-200% center}100%{background-position:200% center} }
@@ -161,21 +159,18 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════
-     NAV
-══════════════════════════════ -->
 <header class="nav-bar fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto pl-3 pr-6 h-16 flex items-center justify-between">
     <a href="#" class="font-cinzel text-lg font-bold tracking-[.04em] g-text select-none">OLYMPO<span class="text-white opacity-20 mx-0.5">·</span>TGN</a>
 
     <nav class="hidden md:flex items-center gap-7">
-      <a href="#servicios"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Servicios</a>
-      <a href="#metodo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Método</a>
-      <a href="#proyectos"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Proyectos</a>
-      <a href="#equipo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Equipo</a>
-      <a href="#hosting"    class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Hosting</a>
-      <a href="#faq"        class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">FAQ</a>
-      <a href="#contacto"   class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Contacto</a>
+      <a href="#servicios"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Servicios</a>
+      <a href="#metodo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Método</a>
+      <a href="#proyectos"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Proyectos</a>
+      <a href="#equipo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Equipo</a>
+      <a href="#hosting"    class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Hosting</a>
+      <a href="#faq"        class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">FAQ</a>
+      <a href="#contacto"   class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-300 hover:text-gold transition-colors duration-300">Contacto</a>
     </nav>
 
     <a href="#contacto" class="hidden md:inline-flex items-center gap-2 font-michroma text-[.64rem] tracking-[.14em] uppercase text-gold border border-gold border-opacity-30 px-4 py-2 hover:border-opacity-70 hover:bg-gold hover:bg-opacity-5 transition-all duration-300">Demo <span class="opacity-50">→</span></a>
@@ -188,21 +183,18 @@
     <input type="checkbox" id="nav-toggle" class="sr-only" />
 
     <div class="mob-menu md:hidden absolute top-full left-0 right-0 flex-col glass border-t-0 px-6 py-6 gap-4">
-      <a href="#servicios" class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Servicios</a>
-      <a href="#metodo"    class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Método</a>
-      <a href="#proyectos" class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Proyectos</a>
-      <a href="#equipo"    class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Equipo</a>
-      <a href="#hosting"   class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Hosting</a>
-      <a href="#faq"       class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">FAQ</a>
+      <a href="#servicios" class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">Servicios</a>
+      <a href="#metodo"    class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">Método</a>
+      <a href="#proyectos" class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">Proyectos</a>
+      <a href="#equipo"    class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">Equipo</a>
+      <a href="#hosting"   class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">Hosting</a>
+      <a href="#faq"       class="font-michroma text-xs uppercase tracking-widest text-gray-300 hover:text-gold transition-colors">FAQ</a>
       <a href="#contacto"  class="btn-g text-center mt-2">Demo Gratuita</a>
     </div>
   </div>
 </header>
 
 
-<!-- ══════════════════════════════
-     HERO
-══════════════════════════════ -->
 <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-20 overflow-hidden scanline mesh-a">
   <div class="hero-img-wrap">
     <img src="https://images.unsplash.com/photo-1722520591957-a61971e88f97?q=80&w=687&auto=format&fit=crop" alt="Catedral de Tarragona" loading="eager" />
@@ -217,10 +209,10 @@
       <span class="shimmer-text">Sin Promesas Vacías.</span>
     </h1>
 
-    <p class="anim-2 font-sans font-light text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-2">
+    <p class="anim-2 font-sans font-light text-gray-200 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-2">
       Somos Raúl y Magí. Dos chicos apasionados por el diseño web.
     </p>
-    <p class="anim-2 font-sans font-light text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-10 italic">
+    <p class="anim-2 font-sans font-light text-gray-400 text-sm max-w-xl mx-auto leading-relaxed mb-10 italic">
       Código limpio. Diseño impactante. Transparencia total.
     </p>
 
@@ -232,15 +224,15 @@
     <div class="anim-4 mt-16 grid grid-cols-3 gap-px w-full max-w-lg">
       <div class="glass py-5 px-4 flex flex-col items-center">
         <span class="stat-n g-text">100%</span>
-        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase">Transparencia</span>
+        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase">Transparencia</span>
       </div>
       <div class="glass py-5 px-4 flex flex-col items-center text-center">
         <span class="stat-n g-text-r">0</span>
-        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase leading-tight">Demo &lt;48h<br/>Gratis</span>
+        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase leading-tight">Demo &lt;48h<br/>Gratis</span>
       </div>
       <div class="glass py-5 px-4 flex flex-col items-center">
         <span class="stat-n g-text">0</span>
-        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase leading-tight text-center">Compromiso<br/>Inicial</span>
+        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase leading-tight text-center">Compromiso<br/>Inicial</span>
       </div>
     </div>
   </div>
@@ -254,9 +246,6 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     SERVICIOS
-══════════════════════════════ -->
 <section id="servicios" class="relative py-28 px-6 mesh-a overflow-hidden">
   <div class="absolute inset-0 pointer-events-none">
     <img src="https://images.unsplash.com/photo-1639650708447-8dc68c363563?q=80&w=1228&auto=format&fit=crop" alt="" class="w-full h-full object-cover opacity-[.05] filter saturate-50" style="object-position:center 40%;" />
@@ -267,14 +256,13 @@
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Qué Construimos</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Nuestros Servicios</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
         No vendemos paquetes genéricos. Identificamos qué tipo de presencia digital necesitas y construimos exactamente eso.
       </p>
     </div>
 
     <div class="grid lg:grid-cols-3 gap-6">
 
-      <!-- Informativa -->
       <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal">
         <div class="flex items-start justify-between">
           <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
@@ -284,35 +272,34 @@
         </div>
         <div>
           <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Informativa</h3>
-          <p class="font-sans text-xs text-gray-400 leading-relaxed">
-            Para <strong class="text-gray-300">despachos, clínicas y estudios</strong> que necesitan presencia digital sólida. Tu competencia tiene webs de hace 8 años que tardan 6 segundos en cargar. Nosotros te entregamos una plataforma moderna con estilo propio y rápida.
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            Para <strong class="text-gray-100">despachos, clínicas y estudios</strong> que necesitan presencia digital sólida. Tu competencia tiene webs de hace 8 años que tardan 6 segundos en cargar. Nosotros te entregamos una plataforma moderna con estilo propio y rápida.
           </p>
         </div>
         <div class="flex flex-col gap-2 mt-auto">
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">SEO técnico incluido</span>
+            <span class="font-sans text-xs text-gray-300">SEO técnico incluido</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Core Web Vitals optimizados</span>
+            <span class="font-sans text-xs text-gray-300">Core Web Vitals optimizados</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Diseño con identidad propia</span>
+            <span class="font-sans text-xs text-gray-300">Diseño con identidad propia</span>
           </div>
         </div>
         <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
           <div>
-            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
             <span class="font-michroma text-lg text-gold ml-2">250</span>
-            <span class="font-sans text-xs text-gray-600 ml-1">— 500€</span>
+            <span class="font-sans text-xs text-gray-400 ml-1">— 500€</span>
           </div>
           <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
       </div>
 
-      <!-- Comercial -->
       <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.1s; border-color:rgba(212,175,55,.22);">
         <div class="flex items-start justify-between">
           <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
@@ -322,39 +309,38 @@
         </div>
         <div>
           <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Comercial</h3>
-          <p class="font-sans text-xs text-gray-400 leading-relaxed">
-            Para <strong class="text-gray-300">reformas, inmobiliarias y gimnasios</strong>. Una web bonita no sirve de nada si no genera dinero. Optimizamos cada botón para capturar contactos reales.
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            Para <strong class="text-gray-100">reformas, inmobiliarias y gimnasios</strong>. Una web bonita no sirve de nada si no genera dinero. Optimizamos cada botón para capturar contactos reales.
           </p>
         </div>
         <div class="glass-v rounded-sm px-4 py-3">
           <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">Aclaración importante</p>
-          <p class="font-sans text-xs text-gray-500 leading-relaxed">No es e-commerce. Es un catálogo de productos donde el cliente <strong class="text-gray-400">te contacta directamente</strong> para cerrar la venta. Tú gestionas la relación, no una tienda.</p>
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">No es e-commerce. Es un catálogo de productos donde el cliente <strong class="text-gray-100">te contacta directamente</strong> para cerrar la venta. Tú gestionas la relación, no una tienda.</p>
         </div>
         <div class="flex flex-col gap-2 mt-auto">
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Formularios de captación optimizados</span>
+            <span class="font-sans text-xs text-gray-300">Formularios de captación optimizados</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">CTAs diseñados para convertir</span>
+            <span class="font-sans text-xs text-gray-300">CTAs diseñados para convertir</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Galería de productos/servicios</span>
+            <span class="font-sans text-xs text-gray-300">Galería de productos/servicios</span>
           </div>
         </div>
         <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
           <div>
-            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
             <span class="font-michroma text-lg text-gold ml-2">500</span>
-            <span class="font-sans text-xs text-gray-600 ml-1">— 850€</span>
+            <span class="font-sans text-xs text-gray-400 ml-1">— 850€</span>
           </div>
           <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
       </div>
 
-      <!-- A medida -->
       <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.2s">
         <div class="flex items-start justify-between">
           <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
@@ -364,29 +350,29 @@
         </div>
         <div>
           <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web a Medida</h3>
-          <p class="font-sans text-xs text-gray-400 leading-relaxed">
-            Para <strong class="text-gray-300">empresas con necesidades únicas</strong>. Empezamos desde cero: sin plantillas, sin modelos de referencia. Escribimos el código para añadir exactamente las funciones que necesitas.
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            Para <strong class="text-gray-100">empresas con necesidades únicas</strong>. Empezamos desde cero: sin plantillas, sin modelos de referencia. Escribimos el código para añadir exactamente las funciones que necesitas.
           </p>
         </div>
         <div class="flex flex-col gap-2 mt-auto">
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Arquitectura diseñada desde cero</span>
+            <span class="font-sans text-xs text-gray-300">Arquitectura diseñada desde cero</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Funcionalidades a petición</span>
+            <span class="font-sans text-xs text-gray-300">Funcionalidades a petición</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Código documentado y entregado</span>
+            <span class="font-sans text-xs text-gray-300">Código documentado y entregado</span>
           </div>
         </div>
         <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
           <div>
-            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
             <span class="font-michroma text-lg text-gold ml-2">1.200</span>
-            <span class="font-sans text-xs text-gray-600 ml-1">— 2.500€+</span>
+            <span class="font-sans text-xs text-gray-400 ml-1">— 2.500€+</span>
           </div>
           <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
@@ -399,15 +385,12 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     MÉTODO / PROCESO
-══════════════════════════════ -->
 <section id="metodo" class="relative py-28 px-6 mesh-b">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Metodología</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Así Funciona Todo</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
         Sin sorpresas. Sin letra pequeña. Te explicamos cada paso antes de que ocurra.
       </p>
     </div>
@@ -424,12 +407,12 @@
             <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Prueba de Concepto</h3>
             <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">1–5 días · Gratuito</span>
           </div>
-          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg mb-4">
-            No usamos Figma. Programamos <strong class="text-gray-300">directamente en código</strong> la estructura real de tu web y te pasamos el enlace. La pruebas en tu navegador. Sin compromiso económico.
+          <p class="font-sans text-sm text-gray-300 leading-relaxed max-w-lg mb-4">
+            No usamos Figma. Programamos <strong class="text-gray-100">directamente en código</strong> la estructura real de tu web y te pasamos el enlace. La pruebas en tu navegador. Sin compromiso económico.
           </p>
           <div class="glass-v px-4 py-3 rounded-sm inline-flex items-center gap-2">
             <svg class="w-4 h-4 text-volt flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            <span class="font-sans text-xs text-gray-400">Si no te convence, no pagas nada. Punto.</span>
+            <span class="font-sans text-xs text-gray-300">Si no te convence, no pagas nada. Punto.</span>
           </div>
         </div>
       </div>
@@ -444,12 +427,12 @@
             <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Desarrollo Final</h3>
             <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">1–2 semanas</span>
           </div>
-          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg mb-4">
+          <p class="font-sans text-sm text-gray-300 leading-relaxed max-w-lg mb-4">
             Cuando el diseño te convence, formalizamos. Recibes un formulario donde introduces toda la información de tu negocio. Ensamblamos cada sección al milímetro: textos, imágenes, formularios y SEO técnico.
           </p>
           <div class="glass px-4 py-3 rounded-sm inline-flex items-center gap-2">
             <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span class="font-sans text-xs text-gray-400">Depósito inicial acordado. El resto al entregar.</span>
+            <span class="font-sans text-xs text-gray-300">Depósito inicial acordado. El resto al entregar.</span>
           </div>
         </div>
       </div>
@@ -463,7 +446,7 @@
             <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Post-Lanzamiento</h3>
             <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">Garantía de Despegue</span>
           </div>
-          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg">
+          <p class="font-sans text-sm text-gray-300 leading-relaxed max-w-lg">
             Periodo de ajustes gratuitos para pequeños retoques. Cambios futuros estructurales se presupuestan por tiempo real de trabajo. Sin tarifas mágicas, sin cuotas forzadas.
           </p>
         </div>
@@ -475,60 +458,85 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     PROYECTOS / PORTFOLIO
-══════════════════════════════ -->
 <section id="proyectos" class="relative py-28 px-6 mesh-a">
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Portfolio</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Nuestro Arsenal</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
-        Cada proyecto es una demostración de ingeniería real. Aquí irán apareciendo los trabajos completados — con enlace en vivo, tecnologías usadas y el reto que resolvimos.
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
+        Cada proyecto es una demostración de ingeniería real. Aquí irán apareciendo los trabajos completados y las bases de las que partimos.
       </p>
     </div>
 
-    <!-- Portfolio grid — ready for real projects -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-
-      <!-- Placeholder cards — replace src and data when projects are live -->
-      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9">
-        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
-          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-gold opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
-          </div>
-          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
-          <p class="font-sans text-xs text-gray-700 text-center">Web Informativa · En desarrollo</p>
-        </div>
+    <div class="mb-20 reveal">
+      <div class="flex items-center justify-between border-b border-gold border-opacity-20 pb-4 mb-6">
+        <h3 class="font-michroma text-lg text-white uppercase tracking-widest">Modelos Base</h3>
       </div>
+      <p class="font-sans text-sm text-gray-300 mb-8 leading-relaxed max-w-3xl">
+        Estas bases son una pequeña guía técnica y visual de lo que incluirá tu web según lo que nos pidas. Navega por ellas para comprobar la velocidad de carga y la estructura antes de dar el paso.
+      </p>
 
-      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9;transition-delay:.1s">
-        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
-          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-volt opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="demos/Prototipo%20Abogados.html" class="glass rounded-sm overflow-hidden card-h group block relative" style="aspect-ratio:16/9">
+          <div class="absolute top-4 right-4 z-10 glass-v px-3 py-1.5 rounded-sm border-volt">
+            <span class="font-michroma text-[.55rem] tracking-widest text-gold uppercase">Desde 250<span class="font-sans font-medium text-[.6rem] ml-[1px]">€</span></span>
           </div>
-          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
-          <p class="font-sans text-xs text-gray-700 text-center">Web Comercial · En desarrollo</p>
-        </div>
-      </div>
-
-      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9;transition-delay:.2s">
-        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
-          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-gold opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+          <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+            <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+            </div>
+            <p class="font-michroma text-[.7rem] tracking-widest text-white uppercase text-center mt-1">Prototipo Abogados</p>
+            <p class="font-sans text-xs text-gray-300 text-center">Web Informativa</p>
+            <div class="mt-2 font-michroma text-[.6rem] text-volt tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ver Demo Técnica →</div>
           </div>
-          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
-          <p class="font-sans text-xs text-gray-700 text-center">Web a Medida · En desarrollo</p>
-        </div>
+        </a>
       </div>
-
     </div>
 
-    <!-- Nota de actualización -->
+    <div class="mb-10 reveal">
+      <div class="flex items-center justify-between border-b border-volt border-opacity-20 pb-4 mb-8">
+        <h3 class="font-michroma text-lg text-white uppercase tracking-widest">Proyectos a Clientes</h3>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+        <div class="glass rounded-sm overflow-hidden card-h group" style="aspect-ratio:16/9">
+          <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+            <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+              <svg class="w-5 h-5 text-gold opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <p class="font-michroma text-[.6rem] tracking-widest text-gray-300 uppercase">Próximamente</p>
+            <p class="font-sans text-xs text-gray-400 text-center">Web Informativa · En desarrollo</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-sm overflow-hidden card-h group" style="aspect-ratio:16/9;transition-delay:.1s">
+          <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+            <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+              <svg class="w-5 h-5 text-volt opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <p class="font-michroma text-[.6rem] tracking-widest text-gray-300 uppercase">Próximamente</p>
+            <p class="font-sans text-xs text-gray-400 text-center">Web Comercial · En desarrollo</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-sm overflow-hidden card-h group" style="aspect-ratio:16/9;transition-delay:.2s">
+          <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+            <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+              <svg class="w-5 h-5 text-gold opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <p class="font-michroma text-[.6rem] tracking-widest text-gray-300 uppercase">Próximamente</p>
+            <p class="font-sans text-xs text-gray-400 text-center">Web a Medida · En desarrollo</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div class="glass rounded-sm px-6 py-4 flex items-center gap-4 max-w-2xl mx-auto reveal">
       <svg class="w-5 h-5 text-volt flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <p class="font-sans text-xs text-gray-500 leading-relaxed">
+      <p class="font-sans text-xs text-gray-300 leading-relaxed">
         Esta sección se actualiza con cada proyecto finalizado. Cada entrada incluye enlace en vivo, stack utilizado y el problema concreto que resolvimos.
       </p>
     </div>
@@ -539,16 +547,13 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     EQUIPO
-══════════════════════════════ -->
 <section id="equipo" class="relative py-28 px-6">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-volt uppercase mb-3">Quiénes Somos</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">El Equipo Detrás</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
-        OlympoTGN nació en un aula de grado medio de informática en Tarragona. Un proyecto de clase que los profesores validaron como un producto <strong class="text-gray-300">listo para el mercado profesional</strong>. Ahí entendimos que podíamos hacer esto en serio.
+      <p class="font-sans text-sm text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        OlympoTGN nació en un aula de grado medio de informática en Tarragona. Un proyecto de clase que los profesores validaron como un producto <strong class="text-gray-100">listo para el mercado profesional</strong>. Ahí entendimos que podíamos hacer esto en serio.
       </p>
     </div>
 
@@ -562,7 +567,7 @@
             <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Motor Técnico</p>
           </div>
         </div>
-        <p class="font-sans text-sm text-gray-500 leading-relaxed">
+        <p class="font-sans text-sm text-gray-300 leading-relaxed">
           19 años. Construye la infraestructura y asegura el rendimiento. Responsable de la arquitectura, el stack y que los números de Lighthouse estén en verde antes de entregar. Si algo puede optimizarse, lo optimiza.
         </p>
         <div class="mt-auto">
@@ -580,7 +585,7 @@
             <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase">Perfeccionista de Diseño</p>
           </div>
         </div>
-        <p class="font-sans text-sm text-gray-500 leading-relaxed">
+        <p class="font-sans text-sm text-gray-300 leading-relaxed">
           18 años. Diseña cada píxel para asegurar el impacto visual. Ningún detalle le pasa desapercibido: tipografía, jerarquía, color, motion. Garantiza que cada web sea visualmente irrepetible antes de que llegue al cliente.
         </p>
         <div class="mt-auto">
@@ -596,22 +601,18 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     HOSTING / DOMINIO
-══════════════════════════════ -->
 <section id="hosting" class="relative py-28 px-6 mesh-b">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Infraestructura</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Dominio &amp; Hosting</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
         Tu web es tuya. Sin secuestros de dominio, sin letra pequeña. Elige el modelo que mejor se adapta a tu nivel de involucración técnica.
       </p>
     </div>
 
     <div class="grid lg:grid-cols-3 gap-6">
 
-      <!-- Opción 1 — recomendada -->
       <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="border-color:rgba(212,175,55,.28);">
         <div class="flex items-start justify-between gap-2">
           <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center flex-shrink-0">
@@ -622,27 +623,26 @@
         <div>
           <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-1">Opción 1</p>
           <h3 class="font-cinzel text-lg text-white font-bold mb-3">Todo Incluido</h3>
-          <p class="font-sans text-xs text-gray-500 leading-relaxed">
-            Nosotros compramos el dominio y hosteamos la web. Tú no haces nada técnico. Si cae el servidor, si hay un problema de certificado, si algo se rompe: <strong class="text-gray-300">lo solucionamos nosotros</strong>. Cero dolores de cabeza.
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            Nosotros compramos el dominio y hosteamos la web. Tú no haces nada técnico. Si cae el servidor, si hay un problema de certificado, si algo se rompe: <strong class="text-gray-100">lo solucionamos nosotros</strong>. Cero dolores de cabeza.
           </p>
         </div>
         <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Cuota mensual de hosting</span>
+            <span class="font-sans text-xs text-gray-300">Cuota mensual de hosting</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Renovación anual del dominio</span>
+            <span class="font-sans text-xs text-gray-300">Renovación anual del dominio</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Soporte técnico incluido</span>
+            <span class="font-sans text-xs text-gray-300">Soporte técnico incluido</span>
           </div>
         </div>
       </div>
 
-      <!-- Opción 2 -->
       <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="transition-delay:.1s">
         <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center">
           <svg class="w-5 h-5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
@@ -650,39 +650,37 @@
         <div>
           <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">Opción 2</p>
           <h3 class="font-cinzel text-lg text-white font-bold mb-3">Dominio + Setup Host</h3>
-          <p class="font-sans text-xs text-gray-500 leading-relaxed">
-            Compramos el dominio y te ayudamos a configurar <strong class="text-gray-300">tu propio hosting</strong>. Solo pagas el dominio anual a la plataforma. Nosotros cobramos un extra único por la configuración inicial. Sin cuotas mensuales nuestras.
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            Compramos el dominio y te ayudamos a configurar <strong class="text-gray-100">tu propio hosting</strong>. Solo pagas el dominio anual a la plataforma. Nosotros cobramos un extra único por la configuración inicial. Sin cuotas mensuales nuestras.
           </p>
         </div>
         <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Pago único de setup</span>
+            <span class="font-sans text-xs text-gray-300">Pago único de setup</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Renovación anual del dominio</span>
+            <span class="font-sans text-xs text-gray-300">Renovación anual del dominio</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-500">Sin cuotas mensuales nuestras</span>
+            <span class="font-sans text-xs text-gray-300">Sin cuotas mensuales nuestras</span>
           </div>
         </div>
       </div>
 
-      <!-- Opción 3 -->
       <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="transition-delay:.2s">
         <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center">
-          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
         <div>
-          <p class="font-michroma text-[.6rem] tracking-widest text-gray-600 uppercase mb-1">Opción 3</p>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gray-400 uppercase mb-1">Opción 3</p>
           <h3 class="font-cinzel text-lg text-white font-bold mb-3">Archivos Raw</h3>
-          <p class="font-sans text-xs text-gray-500 leading-relaxed">
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
             Tú compras y configuras tu propio dominio y hosting. Nosotros solo desarrollamos la web y te entregamos los archivos finales. La web que entregamos funciona al 100%.
           </p>
         </div>
-        <!-- Warning -->
         <div class="warn-box rounded-sm px-4 py-3 flex gap-3 items-start">
           <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
           <p class="font-sans text-xs text-red-400 leading-relaxed">
@@ -692,12 +690,12 @@
         </div>
         <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
           <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-            <span class="font-sans text-xs text-gray-600">Sin cuotas ni mantenimiento</span>
+            <span class="w-1 h-1 rounded-full bg-gray-400"></span>
+            <span class="font-sans text-xs text-gray-300">Sin cuotas ni mantenimiento</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gray-600"></span>
-            <span class="font-sans text-xs text-gray-600">Gestión técnica a cargo del cliente</span>
+            <span class="w-1 h-1 rounded-full bg-gray-400"></span>
+            <span class="font-sans text-xs text-gray-300">Gestión técnica a cargo del cliente</span>
           </div>
         </div>
       </div>
@@ -709,9 +707,6 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     GARANTÍAS
-══════════════════════════════ -->
 <section class="relative py-28 px-6 mesh-a overflow-hidden">
   <div class="absolute inset-0 pointer-events-none">
     <img src="https://images.unsplash.com/photo-1639650708447-8dc68c363563?q=80&w=1228&auto=format&fit=crop" alt="" class="w-full h-full object-cover opacity-[.04] filter saturate-0" />
@@ -722,7 +717,7 @@
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Nuestra Promesa</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Cero Humo. Cero Excusas.</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
         No son cláusulas de marketing. Son los compromisos con los que operamos cada día.
       </p>
     </div>
@@ -731,37 +726,37 @@
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Transparencia Radical</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">Te explicamos cada decisión técnica. Por qué ese stack, por qué esa estructura. Sin magia negra, sin terminología de humo.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">Te explicamos cada decisión técnica. Por qué ese stack, por qué esa estructura. Sin magia negra, sin terminología de humo.</p>
       </div>
 
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.08s">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Diseño Impactante</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">No entregamos nada mediocre. Si el diseño no nos convence a nosotros, no te lo mostramos a ti. Es parte de nuestra identidad, no una opción.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">No entregamos nada mediocre. Si el diseño no nos convence a nosotros, no te lo mostramos a ti. Es parte de nuestra identidad, no una opción.</p>
       </div>
 
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.16s">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Tu Web es Tuya</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">Nunca retenemos accesos ni dominios. El día que quieras marcharte, todo está en tu cuenta. Sin penalizaciones, sin compromisos.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">Nunca retenemos accesos ni dominios. El día que quieras marcharte, todo está en tu cuenta. Sin penalizaciones, sin compromisos.</p>
       </div>
 
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.24s">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Plazos Reales</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">Demo en 1–5 días, web final en 1–2 semanas. No prometemos lo que no podemos cumplir. Si surge algo, te avisamos antes de que lo notes.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">Demo en 1–5 días, web final en 1–2 semanas. No prometemos lo que no podemos cumplir. Si surge algo, te avisamos antes de que lo notes.</p>
       </div>
 
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.32s">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Demo sin Riesgo</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">La Prueba de Concepto es gratuita y sin condiciones. Si no te convence lo que ves, no hay cargo. Ninguno. Así demostramos lo que valemos.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">La Prueba de Concepto es gratuita y sin condiciones. Si no te convence lo que ves, no hay cargo. Ninguno. Así demostramos lo que valemos.</p>
       </div>
 
       <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.40s">
         <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
         <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Precio por Trabajo Real</h3>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">Los cambios futuros se presupuestan por horas reales de trabajo. Sin tarifas inventadas, sin cuotas de mantenimiento forzado.</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">Los cambios futuros se presupuestan por horas reales de trabajo. Sin tarifas inventadas, sin cuotas de mantenimiento forzado.</p>
       </div>
     </div>
   </div>
@@ -770,15 +765,12 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     FAQ
-══════════════════════════════ -->
 <section id="faq" class="relative py-28 px-6 mesh-b">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-16 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">FAQ</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Preguntas Frecuentes</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
         Todo lo que suelen preguntarnos antes de contactar. Sin rodeos.
       </p>
     </div>
@@ -792,7 +784,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Depende del tipo. La <strong class="text-gray-200">demo inicial es gratuita y la entregamos en 1 a 5 días</strong>. Si apruebas el diseño y nos das toda la información de tu negocio, la versión final tarda entre 1 y 2 semanas. Para webs a medida con funcionalidades complejas, acordamos el plazo al inicio del proyecto.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Depende del tipo. La <strong class="text-gray-100">demo inicial es gratuita y la entregamos en 1 a 5 días</strong>. Si apruebas el diseño y nos das toda la información de tu negocio, la versión final tarda entre 1 y 2 semanas. Para webs a medida con funcionalidades complejas, acordamos el plazo al inicio del proyecto.</p>
           </div>
         </div>
       </div>
@@ -804,7 +796,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Para la demo no necesitas nada. Nosotros construimos la estructura con la información que tenemos. Una vez aprobado el diseño, te mandamos un formulario donde nos dices: el nombre de tu negocio, los servicios que ofreces, tus datos de contacto, fotos si tienes, y si quieres algún texto concreto. Si no tienes fotos o textos, te ayudamos a orientarte.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Para la demo no necesitas nada. Nosotros construimos la estructura con la información que tenemos. Una vez aprobado el diseño, te mandamos un formulario donde nos dices: el nombre de tu negocio, los servicios que ofreces, tus datos de contacto, fotos si tienes, y si quieres algún texto concreto. Si no tienes fotos o textos, te ayudamos a orientarte.</p>
           </div>
         </div>
       </div>
@@ -816,7 +808,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Sí. Tras el lanzamiento tienes una <strong class="text-gray-200">Garantía de Despegue</strong>: un periodo de ajustes gratuitos para retoques pequeños (cambiar un texto, ajustar un color, corregir algo). Si en el futuro necesitas añadir secciones nuevas o funcionalidades distintas, te presupuestamos por el tiempo real de trabajo. Sin tarifas mágicas.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Sí. Tras el lanzamiento tienes una <strong class="text-gray-100">Garantía de Despegue</strong>: un periodo de ajustes gratuitos para retoques pequeños (cambiar un texto, ajustar un color, corregir algo). Si en el futuro necesitas añadir secciones nuevas o funcionalidades distintas, te presupuestamos por el tiempo real de trabajo. Sin tarifas mágicas.</p>
           </div>
         </div>
       </div>
@@ -828,7 +820,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Es justo nuestro público principal. Un taller mecánico, una clínica de fisioterapia, un electricista autónomo o una peluquería son exactamente el tipo de cliente para quien tiene más sentido una Web Informativa o Comercial. Precios desde 250€ y un diseño que ninguna agencia grande haría por ese precio.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Es justo nuestro público principal. Un taller mecánico, una clínica de fisioterapia, un electricista autónomo o una peluquería son exactamente el tipo de cliente para quien tiene más sentido una Web Informativa o Comercial. Precios desde 250€ y un diseño que ninguna agencia grande haría por ese precio.</p>
           </div>
         </div>
       </div>
@@ -840,7 +832,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Solo cuando tú decides seguir adelante. La demo es completamente gratuita y sin compromiso: si no te convence lo que ves, no hay cargo de ningún tipo. Si decides contratar, acordamos un <strong class="text-gray-200">depósito inicial</strong> al formalizar, y el resto se paga al entregar la web terminada.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Solo cuando tú decides seguir adelante. La demo es completamente gratuita y sin compromiso: si no te convence lo que ves, no hay cargo de ningún tipo. Si decides contratar, acordamos un <strong class="text-gray-100">depósito inicial</strong> al formalizar, y el resto se paga al entregar la web terminada.</p>
           </div>
         </div>
       </div>
@@ -852,7 +844,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">Escribimos el código desde cero para cada cliente. No usamos WordPress, ni Wix, ni plantillas de ningún tipo. Cada web tiene su propio diseño, su propio estilo visual y su propio código. Es parte de nuestra promesa: <strong class="text-gray-200">garantizamos que nunca entregaremos una web sin un diseño visualmente impactante</strong>.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">Escribimos el código desde cero para cada cliente. No usamos WordPress, ni Wix, ni plantillas de ningún tipo. Cada web tiene su propio diseño, su propio estilo visual y su propio código. Es parte de nuestra promesa: <strong class="text-gray-100">garantizamos que nunca entregaremos una web sin un diseño visualmente impactante</strong>.</p>
           </div>
         </div>
       </div>
@@ -864,7 +856,7 @@
         </button>
         <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
           <div class="px-6 pb-5">
-            <p class="font-sans text-sm text-gray-400 leading-relaxed">La web es tuya. Nunca retenemos dominios ni accesos. Si decides cambiar de proveedor, te entregamos todos los archivos y accesos sin penalización. Sin letra pequeña, sin cuotas de salida. La transparencia no tiene condiciones.</p>
+            <p class="font-sans text-sm text-gray-300 leading-relaxed">La web es tuya. Nunca retenemos dominios ni accesos. Si decides cambiar de proveedor, te entregamos todos los archivos y accesos sin penalización. Sin letra pequeña, sin cuotas de salida. La transparencia no tiene condiciones.</p>
           </div>
         </div>
       </div>
@@ -876,26 +868,22 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     CONTACTO
-══════════════════════════════ -->
 <section id="contacto" class="relative py-28 px-6 mesh-b">
   <div class="max-w-2xl mx-auto">
     <div class="text-center mb-12 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Primer Paso</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Pide tu Demo Gratuita</h2>
-      <p class="font-sans text-sm text-gray-500 max-w-lg mx-auto leading-relaxed">
+      <p class="font-sans text-sm text-gray-300 max-w-lg mx-auto leading-relaxed">
         Cuéntanos el proyecto. En menos de 24h respondemos, y en 1–5 días tienes una primera versión funcional en tu navegador.
       </p>
     </div>
 
-    <!-- Cómo funciona el correo -->
     <div class="glass-v rounded-sm px-5 py-4 flex items-start gap-4 mb-6 reveal">
       <svg class="w-5 h-5 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
       <div>
         <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">¿Cómo funciona este formulario?</p>
-        <p class="font-sans text-xs text-gray-500 leading-relaxed">
-          Usamos <strong class="text-gray-300">Web3Forms</strong> (arquitectura sin servidor). Cuando envíes el formulario, la API lo reenvía en segundos a <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline">olympotgn@gmail.com</a>. Rápido, seguro, sin mantenimiento.
+        <p class="font-sans text-xs text-gray-300 leading-relaxed">
+          Usamos <strong class="text-gray-100">Web3Forms</strong> (arquitectura sin servidor). Cuando envíes el formulario, la API lo reenvía en segundos a <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline">olympotgn@gmail.com</a>. Rápido, seguro, sin mantenimiento.
         </p>
       </div>
     </div>
@@ -942,7 +930,7 @@
       <div>
         <label class="f-label" for="c-hosting">Preferencia de Hosting</label>
         <select class="f-input" id="c-hosting" name="hosting" style="background:rgba(10,10,10,.92);">
-          <option value="" style="color:#555;">Selecciona una opción</option>
+          <option value="" style="color:#888;">Selecciona una opción</option>
           <option>Opción 1 – Todo Incluido (recomendada)</option>
           <option>Opción 2 – Dominio + Setup Host</option>
           <option>Opción 3 – Archivos Raw (gestión propia)</option>
@@ -960,13 +948,12 @@
         Enviar &amp; Solicitar Demo Gratuita →
       </button>
 
-      <p class="font-sans text-[.67rem] text-gray-700 text-center leading-relaxed">
+      <p class="font-sans text-[.67rem] text-gray-400 text-center leading-relaxed">
         Sin compromiso. Respondemos en &lt;24h en días laborables.<br />
         Correo directo: <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline">olympotgn@gmail.com</a>
       </p>
     </form>
 
-    <!-- Success message — hidden by default -->
     <div id="form-success" class="glass rounded-sm p-10 sm:p-14 flex-col items-center text-center gap-6 reveal" style="display:none;">
       <div class="w-16 h-16 mx-auto glass-v rounded-sm flex items-center justify-center mb-2">
         <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -976,12 +963,12 @@
       <div>
         <p class="font-michroma text-[.62rem] tracking-[.3em] text-gold uppercase mb-3">Solicitud Recibida</p>
         <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mb-4">Mensaje enviado con éxito.</h3>
-        <p class="font-sans text-sm text-gray-400 leading-relaxed max-w-md mx-auto">
-          Hemos recibido tu solicitud. Analizaremos tu proyecto y te responderemos en menos de <strong class="text-gray-200">24 horas</strong> en días laborables.
+        <p class="font-sans text-sm text-gray-300 leading-relaxed max-w-md mx-auto">
+          Hemos recibido tu solicitud. Analizaremos tu proyecto y te responderemos en menos de <strong class="text-gray-100">24 horas</strong> en días laborables.
         </p>
       </div>
       <div class="hr-grad w-full my-2"></div>
-      <p class="font-sans text-xs text-gray-600 leading-relaxed">
+      <p class="font-sans text-xs text-gray-400 leading-relaxed">
         Si tienes algo urgente, escríbenos directamente a<br/>
         <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline font-michroma text-[.7rem] tracking-widest">olympotgn@gmail.com</a>
       </p>
@@ -992,47 +979,43 @@
 <div class="hr-grad"></div>
 
 
-<!-- ══════════════════════════════
-     FOOTER
-══════════════════════════════ -->
 <footer class="border-t border-white border-opacity-5 py-12 px-6">
   <div class="max-w-6xl mx-auto">
     <div class="flex flex-col sm:flex-row items-start justify-between gap-10 mb-10">
       <div class="flex flex-col gap-2.5 max-w-xs">
         <span class="font-cinzel text-xl font-bold g-text tracking-[.18em]">OLYMPO · TGN</span>
-        <p class="font-sans text-xs text-gray-700 leading-relaxed">Dos chicos apasionados por el diseño web, fundados en Tarragona en 2025.</p>
-        <p class="font-sans text-xs text-gray-600 italic leading-relaxed">Código limpio. Diseño impactante. Transparencia total.</p>
+        <p class="font-sans text-xs text-gray-400 leading-relaxed">Dos chicos apasionados por el diseño web, fundados en Tarragona en 2025.</p>
+        <p class="font-sans text-xs text-gray-400 italic leading-relaxed">Código limpio. Diseño impactante. Transparencia total.</p>
         <a href="mailto:olympotgn@gmail.com" class="font-michroma text-xs text-gold tracking-widest mt-1 hover:opacity-75 transition-opacity">olympotgn@gmail.com</a>
       </div>
 
       <nav class="flex flex-col gap-3">
-        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-700 uppercase mb-1">Navegación</p>
-        <a href="#servicios"  class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Servicios</a>
-        <a href="#metodo"     class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Método</a>
-        <a href="#proyectos"  class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Proyectos</a>
-        <a href="#equipo"     class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Equipo</a>
-        <a href="#hosting"    class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Hosting</a>
-        <a href="#faq"        class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">FAQ</a>
+        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-400 uppercase mb-1">Navegación</p>
+        <a href="#servicios"  class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">Servicios</a>
+        <a href="#metodo"     class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">Método</a>
+        <a href="#proyectos"  class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">Proyectos</a>
+        <a href="#equipo"     class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">Equipo</a>
+        <a href="#hosting"    class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">Hosting</a>
+        <a href="#faq"        class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">FAQ</a>
       </nav>
 
       <div class="flex flex-col gap-3">
-        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-700 uppercase mb-1">Contacto</p>
-        <a href="mailto:olympotgn@gmail.com" class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">olympotgn@gmail.com</a>
-        <p class="font-sans text-xs text-gray-700">Tarragona, España</p>
+        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-400 uppercase mb-1">Contacto</p>
+        <a href="mailto:olympotgn@gmail.com" class="font-sans text-xs text-gray-300 hover:text-gold transition-colors">olympotgn@gmail.com</a>
+        <p class="font-sans text-xs text-gray-400">Tarragona, España</p>
         <a href="#contacto" class="btn-g mt-2 text-center">Demo Gratuita</a>
       </div>
     </div>
 
     <div class="hr-grad mb-6"></div>
     <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="font-sans text-[.63rem] text-gray-700">© 2025 OlympoTGN · Todos los derechos reservados · Fundada en Tarragona, 2025</p>
-      <p class="font-michroma text-[.57rem] tracking-widest text-gray-700 uppercase">HTML5 · Tailwind CSS · Astro JS</p>
+      <p class="font-sans text-[.63rem] text-gray-400">© 2025 OlympoTGN · Todos los derechos reservados · Fundada en Tarragona, 2025</p>
+      <p class="font-michroma text-[.57rem] tracking-widest text-gray-400 uppercase">HTML5 · Tailwind CSS · Astro JS</p>
     </div>
   </div>
 </footer>
 
 
-<!-- Scroll Reveal -->
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -1040,7 +1023,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<!-- FAQ Accordion -->
 <script>
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
@@ -1066,7 +1048,6 @@
   }
 </script>
 
-<!-- Form Submit Handler -->
 <script>
   const contactForm = document.getElementById('contact-form');
   const successPanel = document.getElementById('form-success');
