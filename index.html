@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OlympoTGN — Ingeniería Web de Élite · Tarragona</title>
+  <meta name="description" content="Agencia de ingeniería web fundada en Tarragona. Raúl y Magí. Código limpio, diseño impactante, resultados reales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Kalam:wght@300;400&family=Michroma&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:  '#0a0a0a',
+            gold: '#D4AF37',
+            volt: '#8B5CF6',
+          },
+          fontFamily: {
+            cinzel:   ['Cinzel','serif'],
+            michroma: ['Michroma','sans-serif'],
+            sans:     ['Montserrat','sans-serif'],
+            kalam:    ['Kalam','cursive'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { --gold:#D4AF37; --volt:#8B5CF6; --ink:#0a0a0a; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--ink); color:#d4d4d4; font-family:'Montserrat',sans-serif; overflow-x:hidden; }
+
+    /* grain */
+    body::after {
+      content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.032'/%3E%3C/svg%3E");
+    }
+
+    /* mesh backgrounds */
+    .mesh-a { background: radial-gradient(ellipse 65% 55% at 10% 15%,rgba(139,92,246,.10) 0%,transparent 65%), radial-gradient(ellipse 50% 45% at 90% 80%,rgba(212,175,55,.08) 0%,transparent 60%); }
+    .mesh-b { background: radial-gradient(ellipse 70% 50% at 80% 20%,rgba(212,175,55,.08) 0%,transparent 60%), radial-gradient(ellipse 55% 50% at 20% 85%,rgba(139,92,246,.09) 0%,transparent 55%); }
+
+    /* glass */
+    .glass   { background:rgba(255,255,255,.025); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(212,175,55,.13); }
+    .glass-v { background:rgba(255,255,255,.018); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(139,92,246,.20); }
+
+    /* gradient text */
+    .g-text   { background:linear-gradient(130deg,#D4AF37 0%,#c49e25 45%,#8B5CF6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .g-text-r { background:linear-gradient(130deg,#8B5CF6 0%,#D4AF37 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* divider */
+    .hr-grad { height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.30),rgba(139,92,246,.30),transparent); }
+
+    /* nav */
+    .nav-bar { background:rgba(10,10,10,.78); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-bottom:1px solid rgba(212,175,55,.10); }
+
+    /* buttons */
+    .btn-g {
+      display:inline-block; background:linear-gradient(135deg,#D4AF37,#b8922e);
+      color:#0a0a0a; font-family:'Michroma',sans-serif; font-size:.72rem;
+      letter-spacing:.14em; text-transform:uppercase; padding:.82rem 2rem;
+      transition:all 400ms ease; position:relative; overflow:hidden;
+    }
+    .btn-g::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.15),transparent); opacity:0; transition:opacity 400ms; }
+    .btn-g:hover { transform:translateY(-2px); box-shadow:0 0 36px rgba(212,175,55,.4); }
+    .btn-g:hover::after { opacity:1; }
+
+    .btn-o {
+      display:inline-block; background:transparent; color:#D4AF37;
+      font-family:'Michroma',sans-serif; font-size:.72rem; letter-spacing:.14em;
+      text-transform:uppercase; padding:.82rem 2rem;
+      border:1px solid rgba(212,175,55,.45); transition:all 400ms ease;
+    }
+    .btn-o:hover { background:rgba(212,175,55,.08); border-color:#D4AF37; transform:translateY(-2px); box-shadow:0 0 24px rgba(212,175,55,.2); }
+
+    /* cards */
+    .card-h { transition:all 400ms ease; }
+    .card-h:hover { transform:translateY(-8px); border-color:rgba(212,175,55,.38)!important; box-shadow:0 12px 48px rgba(212,175,55,.10); }
+
+    /* team card */
+    .team-card { transition:all 400ms ease; }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(139,92,246,.15); border-color:rgba(139,92,246,.4)!important; }
+
+    /* section label */
+    .sec-label::before { content:'◆'; color:var(--gold); opacity:.5; margin-right:.6rem; font-size:.5rem; vertical-align:middle; }
+    .sec-label::after  { content:'◆'; color:var(--gold); opacity:.5; margin-left:.6rem;  font-size:.5rem; vertical-align:middle; }
+
+    /* stat */
+    .stat-n { font-family:'Michroma',sans-serif; font-size:2.5rem; line-height:1; }
+
+    /* form */
+    .f-input { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.10); color:#fff; font-family:'Montserrat',sans-serif; font-size:.82rem; padding:.82rem 1.1rem; width:100%; outline:none; transition:border-color 400ms ease; }
+    .f-input:focus { border-color:rgba(212,175,55,.5); }
+    .f-input::placeholder { color:rgba(255,255,255,.22); }
+    .f-label { font-family:'Michroma',sans-serif; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.35); display:block; margin-bottom:.4rem; }
+
+    /* policy pill */
+    .policy-pill { display:flex; gap:.75rem; align-items:flex-start; padding:1rem 1.2rem; background:rgba(255,255,255,.02); border:1px solid rgba(212,175,55,.10); }
+
+    /* hero image */
+    .hero-img-wrap { position:absolute; inset:0; overflow:hidden; }
+    .hero-img-wrap img { width:100%; height:100%; object-fit:cover; opacity:.28; filter:saturate(.5); transform:scale(1.06); }
+
+    /* rings — removed */
+
+    /* shimmer */
+    @keyframes shimmer { 0%{background-position:-200% center}100%{background-position:200% center} }
+    .shimmer-text { background:linear-gradient(90deg,#D4AF37 20%,#fff 50%,#D4AF37 80%); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shimmer 4s linear infinite; }
+
+    /* badge glow */
+    @keyframes badgeGlow { 0%,100%{box-shadow:0 0 12px rgba(212,175,55,.15)}50%{box-shadow:0 0 36px rgba(212,175,55,.4)} }
+    .badge-glow { animation:badgeGlow 3s ease-in-out infinite; }
+
+    /* fade up */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)} }
+    .anim-1{opacity:0;animation:fadeUp .8s .10s ease forwards}
+    .anim-2{opacity:0;animation:fadeUp .8s .25s ease forwards}
+    .anim-3{opacity:0;animation:fadeUp .8s .40s ease forwards}
+    .anim-4{opacity:0;animation:fadeUp .8s .55s ease forwards}
+
+    /* scanline */
+    @keyframes scan { 0%{transform:translateY(-100vh)}100%{transform:translateY(100vh)} }
+    .scanline::before { content:''; position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.05),transparent); animation:scan 9s linear infinite; pointer-events:none; }
+
+    /* scroll indicator */
+    @keyframes scrollDown { 0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1} }
+    .scroll-ind { animation:scrollDown 2s ease-in-out infinite; }
+
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease,transform .75s ease; }
+    .reveal.in { opacity:1; transform:translateY(0); }
+
+    /* portfolio card */
+    .port-card { position:relative; overflow:hidden; aspect-ratio:16/9; transition:all 400ms ease; }
+    .port-card img { width:100%; height:100%; object-fit:cover; transition:transform 600ms ease; filter:saturate(.5) brightness(.7); }
+    .port-card:hover img { transform:scale(1.06); filter:saturate(.8) brightness(.85); }
+    .port-card .overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,10,10,.92) 0%,rgba(10,10,10,.3) 60%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:1.5rem; opacity:0; transform:translateY(8px); transition:all 400ms ease; }
+    .port-card:hover .overlay { opacity:1; transform:translateY(0); }
+    .port-card .tag { position:absolute; top:1rem; right:1rem; font-family:'Michroma',sans-serif; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; padding:.35rem .8rem; background:rgba(10,10,10,.7); backdrop-filter:blur(10px); border:1px solid rgba(212,175,55,.25); color:#D4AF37; }
+    .port-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.75rem; background:rgba(255,255,255,.018); }
+
+    /* checkbox nav */
+    #nav-toggle { display:none; }
+    #nav-toggle:checked ~ .mob-menu { display:flex; }
+    .mob-menu { display:none; }
+
+    /* recommended badge */
+    .rec-badge { font-family:'Michroma',sans-serif; font-size:.55rem; letter-spacing:.15em; text-transform:uppercase; background:linear-gradient(135deg,#D4AF37,#b8922e); color:#0a0a0a; padding:.25rem .75rem; }
+
+    /* warning box */
+    .warn-box { background:rgba(220,38,38,.06); border:1px solid rgba(220,38,38,.25); }
+
+    /* timeline */
+    .tl-dot { width:3rem; height:3rem; flex-shrink:0; border-radius:2px; display:flex; align-items:center; justify-content:center; font-family:'Michroma',sans-serif; font-size:.78rem; position:relative; z-index:1; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     NAV
+══════════════════════════════ -->
+<header class="nav-bar fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto pl-3 pr-6 h-16 flex items-center justify-between">
+    <a href="#" class="font-cinzel text-lg font-bold tracking-[.04em] g-text select-none">OLYMPO<span class="text-white opacity-20 mx-0.5">·</span>TGN</a>
+
+    <nav class="hidden md:flex items-center gap-7">
+      <a href="#servicios"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Servicios</a>
+      <a href="#metodo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Método</a>
+      <a href="#proyectos"  class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Proyectos</a>
+      <a href="#equipo"     class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Equipo</a>
+      <a href="#hosting"    class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Hosting</a>
+      <a href="#faq"        class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">FAQ</a>
+      <a href="#contacto"   class="font-michroma text-[.66rem] tracking-widest uppercase text-gray-500 hover:text-gold transition-colors duration-300">Contacto</a>
+    </nav>
+
+    <a href="#contacto" class="hidden md:inline-flex items-center gap-2 font-michroma text-[.64rem] tracking-[.14em] uppercase text-gold border border-gold border-opacity-30 px-4 py-2 hover:border-opacity-70 hover:bg-gold hover:bg-opacity-5 transition-all duration-300">Demo <span class="opacity-50">→</span></a>
+
+    <label for="nav-toggle" class="md:hidden flex flex-col gap-1.5 cursor-pointer p-1">
+      <span class="w-6 h-px bg-gold block"></span>
+      <span class="w-4 h-px bg-gold block ml-auto"></span>
+      <span class="w-6 h-px bg-gold block"></span>
+    </label>
+    <input type="checkbox" id="nav-toggle" class="sr-only" />
+
+    <div class="mob-menu md:hidden absolute top-full left-0 right-0 flex-col glass border-t-0 px-6 py-6 gap-4">
+      <a href="#servicios" class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Servicios</a>
+      <a href="#metodo"    class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Método</a>
+      <a href="#proyectos" class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Proyectos</a>
+      <a href="#equipo"    class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Equipo</a>
+      <a href="#hosting"   class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Hosting</a>
+      <a href="#faq"       class="font-michroma text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">FAQ</a>
+      <a href="#contacto"  class="btn-g text-center mt-2">Demo Gratuita</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-20 overflow-hidden scanline mesh-a">
+  <div class="hero-img-wrap">
+    <img src="https://images.unsplash.com/photo-1722520591957-a61971e88f97?q=80&w=687&auto=format&fit=crop" alt="Catedral de Tarragona" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/15 to-[#0a0a0a]"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center">
+
+    <h1 class="anim-1 font-cinzel font-black text-4xl sm:text-6xl lg:text-[5.2rem] leading-[1.06] max-w-5xl mb-6">
+      <span class="g-text">Diseño Web</span><br />
+      <span class="text-white">Sin Humo.</span><br />
+      <span class="shimmer-text">Sin Promesas Vacías.</span>
+    </h1>
+
+    <p class="anim-2 font-sans font-light text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-2">
+      Somos Raúl y Magí. Dos chicos apasionados por el diseño web.
+    </p>
+    <p class="anim-2 font-sans font-light text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-10 italic">
+      Código limpio. Diseño impactante. Transparencia total.
+    </p>
+
+    <div class="anim-3 flex flex-col sm:flex-row gap-4">
+      <a href="#servicios" class="btn-g">Ver Servicios</a>
+      <a href="#contacto"  class="btn-o">Pedir Demo Gratuita</a>
+    </div>
+
+    <div class="anim-4 mt-16 grid grid-cols-3 gap-px w-full max-w-lg">
+      <div class="glass py-5 px-4 flex flex-col items-center">
+        <span class="stat-n g-text">100%</span>
+        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase">Transparencia</span>
+      </div>
+      <div class="glass py-5 px-4 flex flex-col items-center text-center">
+        <span class="stat-n g-text-r">0</span>
+        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase leading-tight">Demo &lt;48h<br/>Gratis</span>
+      </div>
+      <div class="glass py-5 px-4 flex flex-col items-center">
+        <span class="stat-n g-text">0</span>
+        <span class="font-michroma text-[.59rem] text-gray-600 mt-1 tracking-widest uppercase leading-tight text-center">Compromiso<br/>Inicial</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-ind absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-25">
+    <span class="font-michroma text-[.59rem] tracking-[.3em] text-gold uppercase">Descubre</span>
+    <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     SERVICIOS
+══════════════════════════════ -->
+<section id="servicios" class="relative py-28 px-6 mesh-a overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <img src="https://images.unsplash.com/photo-1639650708447-8dc68c363563?q=80&w=1228&auto=format&fit=crop" alt="" class="w-full h-full object-cover opacity-[.05] filter saturate-50" style="object-position:center 40%;" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,#0a0a0a 0%,transparent 20%,transparent 80%,#0a0a0a 100%);"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Qué Construimos</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Nuestros Servicios</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        No vendemos paquetes genéricos. Identificamos qué tipo de presencia digital necesitas y construimos exactamente eso.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Informativa -->
+      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal">
+        <div class="flex items-start justify-between">
+          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          <span class="font-michroma text-[.57rem] tracking-widest text-volt uppercase glass-v px-2.5 py-1 rounded-sm">Posicionamiento</span>
+        </div>
+        <div>
+          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Informativa</h3>
+          <p class="font-sans text-xs text-gray-400 leading-relaxed">
+            Para <strong class="text-gray-300">despachos, clínicas y estudios</strong> que necesitan presencia digital sólida. Tu competencia tiene webs de hace 8 años que tardan 6 segundos en cargar. Nosotros te entregamos una plataforma moderna con estilo propio y rápida.
+          </p>
+        </div>
+        <div class="flex flex-col gap-2 mt-auto">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">SEO técnico incluido</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Core Web Vitals optimizados</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Diseño con identidad propia</span>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
+          <div>
+            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-lg text-gold ml-2">250</span>
+            <span class="font-sans text-xs text-gray-600 ml-1">— 500€</span>
+          </div>
+          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
+        </div>
+      </div>
+
+      <!-- Comercial -->
+      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.1s; border-color:rgba(212,175,55,.22);">
+        <div class="flex items-start justify-between">
+          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <span class="font-michroma text-[.57rem] tracking-widest text-gold uppercase glass px-2.5 py-1 rounded-sm">Más Solicitado</span>
+        </div>
+        <div>
+          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Comercial</h3>
+          <p class="font-sans text-xs text-gray-400 leading-relaxed">
+            Para <strong class="text-gray-300">reformas, inmobiliarias y gimnasios</strong>. Una web bonita no sirve de nada si no genera dinero. Optimizamos cada botón para capturar contactos reales.
+          </p>
+        </div>
+        <div class="glass-v rounded-sm px-4 py-3">
+          <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">Aclaración importante</p>
+          <p class="font-sans text-xs text-gray-500 leading-relaxed">No es e-commerce. Es un catálogo de productos donde el cliente <strong class="text-gray-400">te contacta directamente</strong> para cerrar la venta. Tú gestionas la relación, no una tienda.</p>
+        </div>
+        <div class="flex flex-col gap-2 mt-auto">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Formularios de captación optimizados</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">CTAs diseñados para convertir</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Galería de productos/servicios</span>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
+          <div>
+            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-lg text-gold ml-2">500</span>
+            <span class="font-sans text-xs text-gray-600 ml-1">— 850€</span>
+          </div>
+          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
+        </div>
+      </div>
+
+      <!-- A medida -->
+      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.2s">
+        <div class="flex items-start justify-between">
+          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <span class="font-michroma text-[.57rem] tracking-widest text-volt uppercase glass-v px-2.5 py-1 rounded-sm">Sin Límites</span>
+        </div>
+        <div>
+          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web a Medida</h3>
+          <p class="font-sans text-xs text-gray-400 leading-relaxed">
+            Para <strong class="text-gray-300">empresas con necesidades únicas</strong>. Empezamos desde cero: sin plantillas, sin modelos de referencia. Escribimos el código para añadir exactamente las funciones que necesitas.
+          </p>
+        </div>
+        <div class="flex flex-col gap-2 mt-auto">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Arquitectura diseñada desde cero</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Funcionalidades a petición</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Código documentado y entregado</span>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
+          <div>
+            <span class="font-michroma text-[.6rem] text-gray-600 tracking-widest uppercase">Desde</span>
+            <span class="font-michroma text-lg text-gold ml-2">1.200</span>
+            <span class="font-sans text-xs text-gray-600 ml-1">— 2.500€+</span>
+          </div>
+          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     MÉTODO / PROCESO
+══════════════════════════════ -->
+<section id="metodo" class="relative py-28 px-6 mesh-b">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Metodología</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Así Funciona Todo</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        Sin sorpresas. Sin letra pequeña. Te explicamos cada paso antes de que ocurra.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-0">
+
+      <div class="relative flex gap-6 sm:gap-10 pb-14 reveal">
+        <div class="flex flex-col items-center">
+          <div class="tl-dot glass border border-gold border-opacity-30"><span class="g-text font-michroma text-sm">01</span></div>
+          <div class="flex-1 w-px mt-2" style="background:linear-gradient(to bottom,rgba(212,175,55,.3),rgba(139,92,246,.2));"></div>
+        </div>
+        <div class="pt-1.5 pb-6 flex-1">
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Prueba de Concepto</h3>
+            <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">1–5 días · Gratuito</span>
+          </div>
+          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg mb-4">
+            No usamos Figma. Programamos <strong class="text-gray-300">directamente en código</strong> la estructura real de tu web y te pasamos el enlace. La pruebas en tu navegador. Sin compromiso económico.
+          </p>
+          <div class="glass-v px-4 py-3 rounded-sm inline-flex items-center gap-2">
+            <svg class="w-4 h-4 text-volt flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span class="font-sans text-xs text-gray-400">Si no te convence, no pagas nada. Punto.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex gap-6 sm:gap-10 pb-14 reveal">
+        <div class="flex flex-col items-center">
+          <div class="tl-dot glass-v border border-volt border-opacity-30"><span class="g-text-r font-michroma text-sm">02</span></div>
+          <div class="flex-1 w-px mt-2" style="background:linear-gradient(to bottom,rgba(139,92,246,.3),rgba(212,175,55,.2));"></div>
+        </div>
+        <div class="pt-1.5 pb-6 flex-1">
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Desarrollo Final</h3>
+            <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">1–2 semanas</span>
+          </div>
+          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg mb-4">
+            Cuando el diseño te convence, formalizamos. Recibes un formulario donde introduces toda la información de tu negocio. Ensamblamos cada sección al milímetro: textos, imágenes, formularios y SEO técnico.
+          </p>
+          <div class="glass px-4 py-3 rounded-sm inline-flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="font-sans text-xs text-gray-400">Depósito inicial acordado. El resto al entregar.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex gap-6 sm:gap-10 reveal">
+        <div class="flex flex-col items-center">
+          <div class="tl-dot glass border border-gold border-opacity-30"><span class="g-text font-michroma text-sm">03</span></div>
+        </div>
+        <div class="pt-1.5 flex-1">
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <h3 class="font-michroma text-sm tracking-widest text-white uppercase">Post-Lanzamiento</h3>
+            <span class="glass px-3 py-1 font-michroma text-[.59rem] tracking-widest text-gold uppercase">Garantía de Despegue</span>
+          </div>
+          <p class="font-sans text-sm text-gray-500 leading-relaxed max-w-lg">
+            Periodo de ajustes gratuitos para pequeños retoques. Cambios futuros estructurales se presupuestan por tiempo real de trabajo. Sin tarifas mágicas, sin cuotas forzadas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     PROYECTOS / PORTFOLIO
+══════════════════════════════ -->
+<section id="proyectos" class="relative py-28 px-6 mesh-a">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Portfolio</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Nuestro Arsenal</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        Cada proyecto es una demostración de ingeniería real. Aquí irán apareciendo los trabajos completados — con enlace en vivo, tecnologías usadas y el reto que resolvimos.
+      </p>
+    </div>
+
+    <!-- Portfolio grid — ready for real projects -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+      <!-- Placeholder cards — replace src and data when projects are live -->
+      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9">
+        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-gold opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+          </div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
+          <p class="font-sans text-xs text-gray-700 text-center">Web Informativa · En desarrollo</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9;transition-delay:.1s">
+        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-volt opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+          </div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
+          <p class="font-sans text-xs text-gray-700 text-center">Web Comercial · En desarrollo</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-sm overflow-hidden card-h reveal group" style="aspect-ratio:16/9;transition-delay:.2s">
+        <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+          <div class="w-12 h-12 glass-v rounded-sm flex items-center justify-center">
+            <svg class="w-5 h-5 text-gold opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
+          </div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gray-700 uppercase">Próximamente</p>
+          <p class="font-sans text-xs text-gray-700 text-center">Web a Medida · En desarrollo</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Nota de actualización -->
+    <div class="glass rounded-sm px-6 py-4 flex items-center gap-4 max-w-2xl mx-auto reveal">
+      <svg class="w-5 h-5 text-volt flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p class="font-sans text-xs text-gray-500 leading-relaxed">
+        Esta sección se actualiza con cada proyecto finalizado. Cada entrada incluye enlace en vivo, stack utilizado y el problema concreto que resolvimos.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     EQUIPO
+══════════════════════════════ -->
+<section id="equipo" class="relative py-28 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-volt uppercase mb-3">Quiénes Somos</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">El Equipo Detrás</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+        OlympoTGN nació en un aula de grado medio de informática en Tarragona. Un proyecto de clase que los profesores validaron como un producto <strong class="text-gray-300">listo para el mercado profesional</strong>. Ahí entendimos que podíamos hacer esto en serio.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-7">
+
+      <div class="glass team-card rounded-sm p-8 flex flex-col gap-5 reveal">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-sm glass-v flex items-center justify-center font-cinzel text-xl font-bold g-text border border-volt border-opacity-25">R</div>
+          <div>
+            <p class="font-cinzel text-lg font-bold text-white">Raúl</p>
+            <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Motor Técnico</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-gray-500 leading-relaxed">
+          19 años. Construye la infraestructura y asegura el rendimiento. Responsable de la arquitectura, el stack y que los números de Lighthouse estén en verde antes de entregar. Si algo puede optimizarse, lo optimiza.
+        </p>
+        <div class="mt-auto">
+          <button class="btn-o w-full text-center opacity-50 cursor-not-allowed" disabled title="Próximamente">
+            Currículum — Próximamente
+          </button>
+        </div>
+      </div>
+
+      <div class="glass team-card rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.1s">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-sm glass flex items-center justify-center font-cinzel text-xl font-bold g-text-r border border-gold border-opacity-25">M</div>
+          <div>
+            <p class="font-cinzel text-lg font-bold text-white">Magí</p>
+            <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase">Perfeccionista de Diseño</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-gray-500 leading-relaxed">
+          18 años. Diseña cada píxel para asegurar el impacto visual. Ningún detalle le pasa desapercibido: tipografía, jerarquía, color, motion. Garantiza que cada web sea visualmente irrepetible antes de que llegue al cliente.
+        </p>
+        <div class="mt-auto">
+          <button class="btn-o w-full text-center opacity-50 cursor-not-allowed" disabled title="Próximamente">
+            Currículum — Próximamente
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     HOSTING / DOMINIO
+══════════════════════════════ -->
+<section id="hosting" class="relative py-28 px-6 mesh-b">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Infraestructura</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Dominio &amp; Hosting</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        Tu web es tuya. Sin secuestros de dominio, sin letra pequeña. Elige el modelo que mejor se adapta a tu nivel de involucración técnica.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Opción 1 — recomendada -->
+      <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="border-color:rgba(212,175,55,.28);">
+        <div class="flex items-start justify-between gap-2">
+          <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+          </div>
+          <span class="rec-badge">★ Recomendada</span>
+        </div>
+        <div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-1">Opción 1</p>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-3">Todo Incluido</h3>
+          <p class="font-sans text-xs text-gray-500 leading-relaxed">
+            Nosotros compramos el dominio y hosteamos la web. Tú no haces nada técnico. Si cae el servidor, si hay un problema de certificado, si algo se rompe: <strong class="text-gray-300">lo solucionamos nosotros</strong>. Cero dolores de cabeza.
+          </p>
+        </div>
+        <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Cuota mensual de hosting</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Renovación anual del dominio</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Soporte técnico incluido</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opción 2 -->
+      <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="transition-delay:.1s">
+        <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center">
+          <svg class="w-5 h-5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+        </div>
+        <div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">Opción 2</p>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-3">Dominio + Setup Host</h3>
+          <p class="font-sans text-xs text-gray-500 leading-relaxed">
+            Compramos el dominio y te ayudamos a configurar <strong class="text-gray-300">tu propio hosting</strong>. Solo pagas el dominio anual a la plataforma. Nosotros cobramos un extra único por la configuración inicial. Sin cuotas mensuales nuestras.
+          </p>
+        </div>
+        <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Pago único de setup</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Renovación anual del dominio</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
+            <span class="font-sans text-xs text-gray-500">Sin cuotas mensuales nuestras</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opción 3 -->
+      <div class="glass rounded-sm p-7 flex flex-col gap-5 reveal card-h" style="transition-delay:.2s">
+        <div class="w-10 h-10 glass-v rounded-sm flex items-center justify-center">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div>
+          <p class="font-michroma text-[.6rem] tracking-widest text-gray-600 uppercase mb-1">Opción 3</p>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-3">Archivos Raw</h3>
+          <p class="font-sans text-xs text-gray-500 leading-relaxed">
+            Tú compras y configuras tu propio dominio y hosting. Nosotros solo desarrollamos la web y te entregamos los archivos finales. La web que entregamos funciona al 100%.
+          </p>
+        </div>
+        <!-- Warning -->
+        <div class="warn-box rounded-sm px-4 py-3 flex gap-3 items-start">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <p class="font-sans text-xs text-red-400 leading-relaxed">
+            <strong class="block mb-1">Exención de responsabilidad</strong>
+            Si la web no carga, va lenta o se rompe por una mala configuración del servidor del cliente, no es responsabilidad de OlympoTGN.
+          </p>
+        </div>
+        <div class="mt-auto pt-4 border-t border-gold border-opacity-10 flex flex-col gap-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+            <span class="font-sans text-xs text-gray-600">Sin cuotas ni mantenimiento</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-gray-600"></span>
+            <span class="font-sans text-xs text-gray-600">Gestión técnica a cargo del cliente</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     GARANTÍAS
+══════════════════════════════ -->
+<section class="relative py-28 px-6 mesh-a overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <img src="https://images.unsplash.com/photo-1639650708447-8dc68c363563?q=80&w=1228&auto=format&fit=crop" alt="" class="w-full h-full object-cover opacity-[.04] filter saturate-0" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Nuestra Promesa</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Cero Humo. Cero Excusas.</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        No son cláusulas de marketing. Son los compromisos con los que operamos cada día.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Transparencia Radical</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">Te explicamos cada decisión técnica. Por qué ese stack, por qué esa estructura. Sin magia negra, sin terminología de humo.</p>
+      </div>
+
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.08s">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Diseño Impactante</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">No entregamos nada mediocre. Si el diseño no nos convence a nosotros, no te lo mostramos a ti. Es parte de nuestra identidad, no una opción.</p>
+      </div>
+
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.16s">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Tu Web es Tuya</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">Nunca retenemos accesos ni dominios. El día que quieras marcharte, todo está en tu cuenta. Sin penalizaciones, sin compromisos.</p>
+      </div>
+
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.24s">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Plazos Reales</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">Demo en 1–5 días, web final en 1–2 semanas. No prometemos lo que no podemos cumplir. Si surge algo, te avisamos antes de que lo notes.</p>
+      </div>
+
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.32s">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Demo sin Riesgo</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">La Prueba de Concepto es gratuita y sin condiciones. Si no te convence lo que ves, no hay cargo. Ninguno. Así demostramos lo que valemos.</p>
+      </div>
+
+      <div class="glass rounded-sm p-7 flex flex-col gap-3 reveal card-h" style="transition-delay:.40s">
+        <div class="w-8 h-8 glass-v rounded-sm flex items-center justify-center"><svg class="w-4 h-4 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+        <h3 class="font-michroma text-xs tracking-widest text-white uppercase">Precio por Trabajo Real</h3>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">Los cambios futuros se presupuestan por horas reales de trabajo. Sin tarifas inventadas, sin cuotas de mantenimiento forzado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     FAQ
+══════════════════════════════ -->
+<section id="faq" class="relative py-28 px-6 mesh-b">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">FAQ</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Preguntas Frecuentes</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+        Todo lo que suelen preguntarnos antes de contactar. Sin rodeos.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-3" id="faq-list">
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Cuánto tarda en estar lista mi web?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Depende del tipo. La <strong class="text-gray-200">demo inicial es gratuita y la entregamos en 1 a 5 días</strong>. Si apruebas el diseño y nos das toda la información de tu negocio, la versión final tarda entre 1 y 2 semanas. Para webs a medida con funcionalidades complejas, acordamos el plazo al inicio del proyecto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.05s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Qué necesito prepararme yo?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Para la demo no necesitas nada. Nosotros construimos la estructura con la información que tenemos. Una vez aprobado el diseño, te mandamos un formulario donde nos dices: el nombre de tu negocio, los servicios que ofreces, tus datos de contacto, fotos si tienes, y si quieres algún texto concreto. Si no tienes fotos o textos, te ayudamos a orientarte.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.10s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Puedo pedir cambios después de la entrega?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Sí. Tras el lanzamiento tienes una <strong class="text-gray-200">Garantía de Despegue</strong>: un periodo de ajustes gratuitos para retoques pequeños (cambiar un texto, ajustar un color, corregir algo). Si en el futuro necesitas añadir secciones nuevas o funcionalidades distintas, te presupuestamos por el tiempo real de trabajo. Sin tarifas mágicas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.15s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Trabajáis con negocios pequeños o autónomos?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Es justo nuestro público principal. Un taller mecánico, una clínica de fisioterapia, un electricista autónomo o una peluquería son exactamente el tipo de cliente para quien tiene más sentido una Web Informativa o Comercial. Precios desde 250€ y un diseño que ninguna agencia grande haría por ese precio.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.20s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">La demo es gratis, ¿cuándo se empieza a pagar?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Solo cuando tú decides seguir adelante. La demo es completamente gratuita y sin compromiso: si no te convence lo que ves, no hay cargo de ningún tipo. Si decides contratar, acordamos un <strong class="text-gray-200">depósito inicial</strong> al formalizar, y el resto se paga al entregar la web terminada.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.25s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Mi web será única o usáis plantillas?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">Escribimos el código desde cero para cada cliente. No usamos WordPress, ni Wix, ni plantillas de ningún tipo. Cada web tiene su propio diseño, su propio estilo visual y su propio código. Es parte de nuestra promesa: <strong class="text-gray-200">garantizamos que nunca entregaremos una web sin un diseño visualmente impactante</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass rounded-sm overflow-hidden reveal" style="transition-delay:.30s">
+        <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
+          <span class="font-michroma text-xs tracking-widest text-white uppercase">¿Qué pasa si me quiero ir con otro proveedor?</span>
+          <span class="faq-icon text-gold text-lg flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-body max-h-0 overflow-hidden transition-all duration-400 ease-in-out">
+          <div class="px-6 pb-5">
+            <p class="font-sans text-sm text-gray-400 leading-relaxed">La web es tuya. Nunca retenemos dominios ni accesos. Si decides cambiar de proveedor, te entregamos todos los archivos y accesos sin penalización. Sin letra pequeña, sin cuotas de salida. La transparencia no tiene condiciones.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     CONTACTO
+══════════════════════════════ -->
+<section id="contacto" class="relative py-28 px-6 mesh-b">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Primer Paso</p>
+      <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Pide tu Demo Gratuita</h2>
+      <p class="font-sans text-sm text-gray-500 max-w-lg mx-auto leading-relaxed">
+        Cuéntanos el proyecto. En menos de 24h respondemos, y en 1–5 días tienes una primera versión funcional en tu navegador.
+      </p>
+    </div>
+
+    <!-- Cómo funciona el correo -->
+    <div class="glass-v rounded-sm px-5 py-4 flex items-start gap-4 mb-6 reveal">
+      <svg class="w-5 h-5 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <div>
+        <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">¿Cómo funciona este formulario?</p>
+        <p class="font-sans text-xs text-gray-500 leading-relaxed">
+          Usamos <strong class="text-gray-300">Web3Forms</strong> (arquitectura sin servidor). Cuando envíes el formulario, la API lo reenvía en segundos a <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline">olympotgn@gmail.com</a>. Rápido, seguro, sin mantenimiento.
+        </p>
+      </div>
+    </div>
+
+    <form id="contact-form" class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 reveal" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="45b7faee-66b0-44d2-806a-c839b306f96e" />
+      <input type="hidden" name="subject" value="Nueva solicitud desde OlympoTGN" />
+      <input type="hidden" name="redirect" value="" />
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="f-label" for="c-nombre">Nombre</label>
+          <input class="f-input" id="c-nombre" type="text" name="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div>
+          <label class="f-label" for="c-empresa">Empresa / Negocio</label>
+          <input class="f-input" id="c-empresa" type="text" name="empresa" placeholder="Nombre del negocio" />
+        </div>
+      </div>
+
+      <div>
+        <label class="f-label" for="c-email">Email de Contacto</label>
+        <input class="f-input" id="c-email" type="email" name="email" placeholder="tu@correo.com" required />
+      </div>
+
+      <div>
+        <label class="f-label" for="c-tel">Teléfono (opcional)</label>
+        <input class="f-input" id="c-tel" type="tel" name="telefono" placeholder="+34 6XX XXX XXX" />
+      </div>
+
+      <div>
+        <label class="f-label" for="c-tipo">Tipo de Proyecto</label>
+        <select class="f-input" id="c-tipo" name="tipo" style="background:rgba(10,10,10,.92);">
+          <option value="demo" selected>⚡ Solicitar una demo (gratis, sin compromiso)</option>
+          <option value="">— Tengo claro el tipo de web —</option>
+          <option>Web Informativa (despachos, clínicas, estudios...)</option>
+          <option>Web Comercial (reformas, inmobiliaria, gimnasio...)</option>
+          <option>Web a Medida (necesidades específicas)</option>
+          <option>No lo tengo claro aún</option>
+          <option>Me gustaría consultar dudas</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="f-label" for="c-hosting">Preferencia de Hosting</label>
+        <select class="f-input" id="c-hosting" name="hosting" style="background:rgba(10,10,10,.92);">
+          <option value="" style="color:#555;">Selecciona una opción</option>
+          <option>Opción 1 – Todo Incluido (recomendada)</option>
+          <option>Opción 2 – Dominio + Setup Host</option>
+          <option>Opción 3 – Archivos Raw (gestión propia)</option>
+          <option>Aún no lo sé</option>
+          <option>Me gustaría consultar dudas</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="f-label" for="c-brief">Cuéntanos el Proyecto</label>
+        <textarea class="f-input resize-none" id="c-brief" name="brief" rows="5" placeholder="¿Qué hace tu negocio? ¿Qué objetivo tiene la web? ¿Tienes referentes de diseño? ¿Plazos?"></textarea>
+      </div>
+
+      <button type="submit" id="form-submit-btn" class="btn-g w-full text-center mt-2">
+        Enviar &amp; Solicitar Demo Gratuita →
+      </button>
+
+      <p class="font-sans text-[.67rem] text-gray-700 text-center leading-relaxed">
+        Sin compromiso. Respondemos en &lt;24h en días laborables.<br />
+        Correo directo: <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline">olympotgn@gmail.com</a>
+      </p>
+    </form>
+
+    <!-- Success message — hidden by default -->
+    <div id="form-success" class="glass rounded-sm p-10 sm:p-14 flex-col items-center text-center gap-6 reveal" style="display:none;">
+      <div class="w-16 h-16 mx-auto glass-v rounded-sm flex items-center justify-center mb-2">
+        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-michroma text-[.62rem] tracking-[.3em] text-gold uppercase mb-3">Solicitud Recibida</p>
+        <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mb-4">Mensaje enviado con éxito.</h3>
+        <p class="font-sans text-sm text-gray-400 leading-relaxed max-w-md mx-auto">
+          Hemos recibido tu solicitud. Analizaremos tu proyecto y te responderemos en menos de <strong class="text-gray-200">24 horas</strong> en días laborables.
+        </p>
+      </div>
+      <div class="hr-grad w-full my-2"></div>
+      <p class="font-sans text-xs text-gray-600 leading-relaxed">
+        Si tienes algo urgente, escríbenos directamente a<br/>
+        <a href="mailto:olympotgn@gmail.com" class="text-gold hover:underline font-michroma text-[.7rem] tracking-widest">olympotgn@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="hr-grad"></div>
+
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer class="border-t border-white border-opacity-5 py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col sm:flex-row items-start justify-between gap-10 mb-10">
+      <div class="flex flex-col gap-2.5 max-w-xs">
+        <span class="font-cinzel text-xl font-bold g-text tracking-[.18em]">OLYMPO · TGN</span>
+        <p class="font-sans text-xs text-gray-700 leading-relaxed">Dos chicos apasionados por el diseño web, fundados en Tarragona en 2025.</p>
+        <p class="font-sans text-xs text-gray-600 italic leading-relaxed">Código limpio. Diseño impactante. Transparencia total.</p>
+        <a href="mailto:olympotgn@gmail.com" class="font-michroma text-xs text-gold tracking-widest mt-1 hover:opacity-75 transition-opacity">olympotgn@gmail.com</a>
+      </div>
+
+      <nav class="flex flex-col gap-3">
+        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-700 uppercase mb-1">Navegación</p>
+        <a href="#servicios"  class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Servicios</a>
+        <a href="#metodo"     class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Método</a>
+        <a href="#proyectos"  class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Proyectos</a>
+        <a href="#equipo"     class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Equipo</a>
+        <a href="#hosting"    class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">Hosting</a>
+        <a href="#faq"        class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">FAQ</a>
+      </nav>
+
+      <div class="flex flex-col gap-3">
+        <p class="font-michroma text-[.6rem] tracking-[.2em] text-gray-700 uppercase mb-1">Contacto</p>
+        <a href="mailto:olympotgn@gmail.com" class="font-sans text-xs text-gray-600 hover:text-gold transition-colors">olympotgn@gmail.com</a>
+        <p class="font-sans text-xs text-gray-700">Tarragona, España</p>
+        <a href="#contacto" class="btn-g mt-2 text-center">Demo Gratuita</a>
+      </div>
+    </div>
+
+    <div class="hr-grad mb-6"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="font-sans text-[.63rem] text-gray-700">© 2025 OlympoTGN · Todos los derechos reservados · Fundada en Tarragona, 2025</p>
+      <p class="font-michroma text-[.57rem] tracking-widest text-gray-700 uppercase">HTML5 · Tailwind CSS · Astro JS</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scroll Reveal -->
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- FAQ Accordion -->
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const body = item.querySelector('.faq-body');
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+
+    // Close all open items
+    document.querySelectorAll('.faq-item').forEach(el => {
+      const b = el.querySelector('.faq-body');
+      const i = el.querySelector('.faq-icon');
+      b.style.maxHeight = '0px';
+      i.textContent = '+';
+      i.style.transform = 'rotate(0deg)';
+    });
+
+    // Open clicked item if it was closed
+    if (!isOpen) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      icon.textContent = '×';
+      icon.style.transform = 'rotate(90deg)';
+    }
+  }
+</script>
+
+<!-- Form Submit Handler -->
+<script>
+  const contactForm = document.getElementById('contact-form');
+  const successPanel = document.getElementById('form-success');
+  const submitBtn = document.getElementById('form-submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      submitBtn.textContent = 'Enviando…';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          contactForm.style.transition = 'opacity 0.4s ease';
+          contactForm.style.opacity = '0';
+          setTimeout(() => {
+            contactForm.style.display = 'none';
+            successPanel.style.display = 'flex';
+            successPanel.style.opacity = '0';
+            successPanel.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => { successPanel.style.opacity = '1'; }, 30);
+          }, 400);
+        } else {
+          submitBtn.textContent = 'Error — Inténtalo de nuevo';
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+      } catch {
+        submitBtn.textContent = 'Error de red — Inténtalo de nuevo';
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
