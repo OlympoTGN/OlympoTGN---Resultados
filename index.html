@@ -424,7 +424,7 @@
               </div>
             </div>
 
-            <a href="#contacto" class="btn-g text-center mt-auto">Pedir Demo de este Núcleo →</a>
+            <a href="#contacto" class="btn-g text-center mt-auto nucleo-cta" data-nucleo="N1 · Web Informativa (350€ base)" onclick="preselectNucleo(this)">Pedir Demo de este Núcleo →</a>
           </div>
 
           <!-- Right: extras + calculator -->
@@ -533,7 +533,7 @@
               </div>
             </div>
 
-            <a href="#contacto" class="btn-g text-center mt-auto">Pedir Demo de este Núcleo →</a>
+            <a href="#contacto" class="btn-g text-center mt-auto nucleo-cta" data-nucleo="N2 · Web Comercial (550€ base)" onclick="preselectNucleo(this)">Pedir Demo de este Núcleo →</a>
           </div>
 
           <div class="flex flex-col gap-5">
@@ -647,7 +647,7 @@
               </div>
             </div>
 
-            <a href="#contacto" class="btn-g text-center mt-auto">Solicitar Presupuesto →</a>
+            <a href="#contacto" class="btn-g text-center mt-auto nucleo-cta" data-nucleo="N3 · Arquitectura a Medida (desde 1.200€)" onclick="preselectNucleo(this)">Solicitar Presupuesto →</a>
           </div>
 
           <div class="flex flex-col gap-5">
@@ -734,7 +734,7 @@
               </div>
             </div>
 
-            <a href="#contacto" class="btn-g text-center mt-auto">Evaluar mi Web Actual →</a>
+            <a href="#contacto" class="btn-g text-center mt-auto nucleo-cta" data-nucleo="N4 · Rediseño y Migración (precio según evaluación)" onclick="preselectNucleo(this)">Evaluar mi Web Actual →</a>
           </div>
 
           <div class="flex flex-col gap-5">
@@ -1293,61 +1293,126 @@
       </div>
     </div>
 
-    <form id="contact-form" class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 reveal" action="https://api.web3forms.com/submit" method="POST">
+    <form id="contact-form" class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-7 reveal" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="45b7faee-66b0-44d2-806a-c839b306f96e" />
       <input type="hidden" name="subject" value="Nueva solicitud desde OlympoTGN" />
       <input type="hidden" name="redirect" value="" />
 
-      <div class="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label class="f-label" for="c-nombre">Nombre</label>
-          <input class="f-input" id="c-nombre" type="text" name="nombre" placeholder="Tu nombre" required />
+      <!-- Bloque 1: Identificación -->
+      <div>
+        <p class="font-michroma text-[.58rem] tracking-[.25em] text-gold uppercase mb-4 flex items-center gap-2">
+          <span class="w-4 h-px bg-gold opacity-40 block"></span>01 · Quién eres
+        </p>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="f-label" for="c-nombre">Nombre *</label>
+            <input class="f-input" id="c-nombre" type="text" name="nombre" placeholder="Tu nombre completo" required />
+          </div>
+          <div>
+            <label class="f-label" for="c-empresa">Empresa / Negocio</label>
+            <input class="f-input" id="c-empresa" type="text" name="empresa" placeholder="Nombre del negocio o autónomo" />
+          </div>
+          <div>
+            <label class="f-label" for="c-email">Email de Contacto *</label>
+            <input class="f-input" id="c-email" type="email" name="email" placeholder="tu@correo.com" required />
+          </div>
+          <div>
+            <label class="f-label" for="c-tel">Teléfono (opcional)</label>
+            <input class="f-input" id="c-tel" type="tel" name="telefono" placeholder="+34 6XX XXX XXX" />
+          </div>
         </div>
-        <div>
-          <label class="f-label" for="c-empresa">Empresa / Negocio</label>
-          <input class="f-input" id="c-empresa" type="text" name="empresa" placeholder="Nombre del negocio" />
+      </div>
+
+      <div class="hr-grad"></div>
+
+      <!-- Bloque 2: Tipo de proyecto -->
+      <div>
+        <p class="font-michroma text-[.58rem] tracking-[.25em] text-gold uppercase mb-4 flex items-center gap-2">
+          <span class="w-4 h-px bg-gold opacity-40 block"></span>02 · Qué necesitas
+        </p>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2">
+            <label class="f-label" for="c-tipo">Núcleo de Servicio</label>
+            <select class="f-input" id="c-tipo" name="tipo" style="background:rgba(10,10,10,.92);">
+              <option value="demo">⚡ Solicitar una demo (gratis, sin compromiso)</option>
+              <option value="N1 · Web Informativa (350€ base)">N1 · Web Informativa (350€ base)</option>
+              <option value="N2 · Web Comercial (550€ base)">N2 · Web Comercial (550€ base)</option>
+              <option value="N3 · Arquitectura a Medida (desde 1.200€)">N3 · Arquitectura a Medida (desde 1.200€)</option>
+              <option value="N4 · Rediseño y Migración (precio según evaluación)">N4 · Rediseño y Migración (precio según evaluación)</option>
+              <option value="No lo tengo claro">No lo tengo claro aún</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="f-label" for="c-sector">Sector o tipo de negocio *</label>
+            <input class="f-input" id="c-sector" type="text" name="sector" placeholder="Ej: Clínica dental, empresa de reformas, despacho de abogados..." required />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="f-label" for="c-objetivo">¿Qué quieres conseguir con la web? *</label>
+            <select class="f-input" id="c-objetivo" name="objetivo" style="background:rgba(10,10,10,.92);" required>
+              <option value="">Selecciona el objetivo principal</option>
+              <option>Que me encuentren en Google y llamen por teléfono</option>
+              <option>Captar contactos y solicitudes de presupuesto</option>
+              <option>Mostrar mi trabajo / portfolio de proyectos</option>
+              <option>Reemplazar una web antigua que no funciona</option>
+              <option>Necesito funcionalidades a medida</option>
+              <option>Varias de las anteriores</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div>
-        <label class="f-label" for="c-email">Email de Contacto</label>
-        <input class="f-input" id="c-email" type="email" name="email" placeholder="tu@correo.com" required />
-      </div>
+      <div class="hr-grad"></div>
 
+      <!-- Bloque 3: Para la demo -->
       <div>
-        <label class="f-label" for="c-tel">Teléfono (opcional)</label>
-        <input class="f-input" id="c-tel" type="tel" name="telefono" placeholder="+34 6XX XXX XXX" />
-      </div>
+        <div class="flex items-start gap-3 glass-v rounded-sm px-4 py-3 mb-5">
+          <svg class="w-4 h-4 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <p class="font-sans text-xs text-gray-300 leading-relaxed">
+            <strong class="text-white font-semibold">Para preparar tu demo necesitamos lo básico.</strong> Cuanta más información nos des, más ajustada será la primera versión que te enviemos.
+          </p>
+        </div>
 
-      <div>
-        <label class="f-label" for="c-tipo">Tipo de Proyecto</label>
-        <select class="f-input" id="c-tipo" name="tipo" style="background:rgba(10,10,10,.92);">
-          <option value="demo" selected>⚡ Solicitar una demo (gratis, sin compromiso)</option>
-          <option value="">— Tengo claro el tipo de web —</option>
-          <option>N1 · Web Informativa (350€ base)</option>
-          <option>N2 · Web Comercial (550€ base)</option>
-          <option>N3 · Arquitectura a Medida (desde 1.200€)</option>
-          <option>N4 · Rediseño y Migración (precio según evaluación)</option>
-          <option>No lo tengo claro aún</option>
-          <option>Me gustaría consultar dudas</option>
-        </select>
+        <p class="font-michroma text-[.58rem] tracking-[.25em] text-gold uppercase mb-4 flex items-center gap-2">
+          <span class="w-4 h-px bg-gold opacity-40 block"></span>03 · Tu negocio en detalle
+        </p>
+
+        <div class="flex flex-col gap-5">
+          <div>
+            <label class="f-label" for="c-servicios-ofrecidos">¿Qué servicios o productos ofreces?</label>
+            <textarea class="f-input resize-none" id="c-servicios-ofrecidos" name="servicios_ofrecidos" rows="3" placeholder="Ej: Reformas de cocina y baño, instalaciones eléctricas, pintura interior..."></textarea>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="f-label" for="c-zona">¿Dónde operas? (zona geográfica)</label>
+              <input class="f-input" id="c-zona" type="text" name="zona" placeholder="Ej: Tarragona y alrededores, toda España..." />
+            </div>
+            <div>
+              <label class="f-label" for="c-web-actual">¿Tienes web actualmente?</label>
+              <input class="f-input" id="c-web-actual" type="text" name="web_actual" placeholder="URL si la tienes, o 'No tengo'" />
+            </div>
+          </div>
+
+          <div>
+            <label class="f-label" for="c-referentes">¿Tienes alguna web de referencia que te guste? (opcional)</label>
+            <input class="f-input" id="c-referentes" type="text" name="referentes" placeholder="Pega un enlace o descríbelo: 'algo oscuro y elegante', 'minimalista'..." />
+          </div>
+
+          <div>
+            <label class="f-label" for="c-brief">Algo más que quieras contarnos (opcional)</label>
+            <textarea class="f-input resize-none" id="c-brief" name="brief" rows="3" placeholder="Plazos, dudas concretas, si tienes logo o imágenes disponibles..."></textarea>
+          </div>
+        </div>
       </div>
 
       <div>
         <label class="f-label" for="c-hosting">Preferencia de Hosting</label>
         <select class="f-input" id="c-hosting" name="hosting" style="background:rgba(10,10,10,.92);">
-          <option value="" style="color:#888;">Selecciona una opción</option>
+          <option value="">Aún no lo sé / me gustaría consultar</option>
           <option>Opción 1 – Todo Incluido (recomendada)</option>
           <option>Opción 2 – Dominio + Setup Host</option>
           <option>Opción 3 – Archivos Raw (gestión propia)</option>
-          <option>Aún no lo sé</option>
-          <option>Me gustaría consultar dudas</option>
         </select>
-      </div>
-
-      <div>
-        <label class="f-label" for="c-brief">Cuéntanos el Proyecto</label>
-        <textarea class="f-input resize-none" id="c-brief" name="brief" rows="5" placeholder="¿Qué hace tu negocio? ¿Qué objetivo tiene la web? ¿Tienes referentes de diseño? ¿Plazos?"></textarea>
       </div>
 
       <button type="submit" id="form-submit-btn" class="btn-g w-full text-center mt-2">
@@ -1455,6 +1520,23 @@
 </script>
 
 <script>
+  // Preselect nucleo in contact form when CTA clicked
+  function preselectNucleo(el) {
+    const value = el.getAttribute('data-nucleo');
+    const select = document.getElementById('c-tipo');
+    if (!select || !value) return;
+    for (let i = 0; i < select.options.length; i++) {
+      if (select.options[i].value === value) {
+        select.selectedIndex = i;
+        // brief visual highlight on the select
+        select.style.transition = 'border-color 400ms ease';
+        select.style.borderColor = 'rgba(212,175,55,.6)';
+        setTimeout(() => select.style.borderColor = '', 1800);
+        break;
+      }
+    }
+  }
+
   // Nucleo tabs
   function switchNucleo(idx) {
     document.querySelectorAll('.nucleo-tab').forEach((t, i) => {
