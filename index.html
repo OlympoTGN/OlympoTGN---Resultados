@@ -155,9 +155,63 @@
 
     /* timeline */
     .tl-dot { width:3rem; height:3rem; flex-shrink:0; border-radius:2px; display:flex; align-items:center; justify-content:center; font-family:'Michroma',sans-serif; font-size:.78rem; position:relative; z-index:1; }
+
+    /* nucleo tabs */
+    .nucleo-tab {
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(212,175,55,.10);
+      color: rgba(255,255,255,.45);
+      cursor: pointer;
+    }
+    .nucleo-tab:hover {
+      background: rgba(212,175,55,.05);
+      border-color: rgba(212,175,55,.25);
+      color: rgba(255,255,255,.75);
+    }
+    .nucleo-tab.active-tab {
+      background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(139,92,246,.08));
+      border-color: rgba(212,175,55,.40);
+      color: #D4AF37;
+    }
+    .nucleo-panel.hidden { display: none; }
+    .extra-toggle:has(input:checked) {
+      background: rgba(212,175,55,.04);
+      border-color: rgba(212,175,55,.28) !important;
+    }
+
+    /* cookie banner */
+    #cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 10000;
+      background: rgba(10,10,10,.96); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(212,175,55,.18);
+      transform: translateY(100%);
+      transition: transform 500ms cubic-bezier(.22,1,.36,1);
+    }
+    #cookie-banner.visible { transform: translateY(0); }
   </style>
 </head>
 <body>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="dialog" aria-label="Política de cookies">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+    <div class="flex items-start gap-4 flex-1">
+      <div class="w-9 h-9 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+        <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <p class="font-michroma text-[.62rem] tracking-[.2em] text-gold uppercase mb-1">Privacidad y Cookies</p>
+        <p class="font-sans text-xs text-gray-300 leading-relaxed max-w-2xl">
+          Utilizamos cookies técnicas estrictamente necesarias para el funcionamiento de esta web. No usamos cookies de seguimiento ni compartimos datos con terceros. Al continuar navegando, aceptas su uso conforme al <strong class="text-gray-100">RGPD (UE) 2016/679</strong>.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-shrink-0 w-full sm:w-auto">
+      <button id="cookie-reject" class="btn-o text-center flex-1 sm:flex-none" style="padding:.6rem 1.4rem; font-size:.62rem;">Solo necesarias</button>
+      <button id="cookie-accept" class="btn-g text-center flex-1 sm:flex-none" style="padding:.6rem 1.4rem; font-size:.62rem;">Aceptar →</button>
+    </div>
+  </div>
+</div>
 
 <header class="nav-bar fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto pl-3 pr-6 h-16 flex items-center justify-between">
@@ -221,18 +275,53 @@
       <a href="#contacto"  class="btn-o">Pedir Demo Gratuita</a>
     </div>
 
-    <div class="anim-4 mt-16 grid grid-cols-3 gap-px w-full max-w-lg">
-      <div class="glass py-5 px-4 flex flex-col items-center">
-        <span class="stat-n g-text">100%</span>
-        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase">Transparencia</span>
-      </div>
-      <div class="glass py-5 px-4 flex flex-col items-center text-center">
-        <span class="stat-n g-text-r">0</span>
-        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase leading-tight">Demo &lt;48h<br/>Gratis</span>
-      </div>
-      <div class="glass py-5 px-4 flex flex-col items-center">
-        <span class="stat-n g-text">0</span>
-        <span class="font-michroma text-[.59rem] text-gray-400 mt-1 tracking-widest uppercase leading-tight text-center">Compromiso<br/>Inicial</span>
+    <div class="anim-4 mt-16 w-full max-w-xl">
+      <div class="glass relative overflow-hidden" style="border-color:rgba(212,175,55,.28);">
+
+        <!-- fondo glow sutil -->
+        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(212,175,55,.07) 0%,transparent 70%);"></div>
+
+        <div class="relative z-10 flex flex-col sm:flex-row items-center gap-6 px-7 py-6">
+
+          <!-- icono con pulso -->
+          <div class="flex-shrink-0 relative">
+            <div class="w-14 h-14 glass-v rounded-sm flex items-center justify-center badge-glow">
+              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- texto principal -->
+          <div class="flex flex-col gap-1 text-center sm:text-left flex-1">
+            <p class="font-michroma text-[.58rem] tracking-[.25em] text-gold uppercase">Sin coste · Sin compromiso</p>
+            <p class="font-cinzel text-xl sm:text-2xl font-bold text-white leading-tight">Primera demo gratuita<br/><span class="g-text">en menos de 48h</span></p>
+          </div>
+
+          <!-- pill derecha -->
+          <div class="flex-shrink-0 flex flex-col items-center gap-1">
+            <span class="font-michroma text-3xl font-bold g-text leading-none">&lt;48h</span>
+            <span class="font-michroma text-[.52rem] tracking-[.2em] text-gray-400 uppercase">Garantizado</span>
+          </div>
+
+        </div>
+
+        <!-- barra inferior con los 3 micro-datos -->
+        <div class="relative z-10 grid grid-cols-3 border-t" style="border-color:rgba(212,175,55,.12);">
+          <div class="flex flex-col items-center py-3 px-2 gap-0.5" style="border-right:1px solid rgba(212,175,55,.10);">
+            <span class="font-michroma text-xs text-gold font-bold">100%</span>
+            <span class="font-michroma text-[.5rem] tracking-widest text-gray-500 uppercase">Transparencia</span>
+          </div>
+          <div class="flex flex-col items-center py-3 px-2 gap-0.5" style="border-right:1px solid rgba(212,175,55,.10);">
+            <span class="font-michroma text-xs text-volt font-bold">0<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+            <span class="font-michroma text-[.5rem] tracking-widest text-gray-500 uppercase">Coste inicial</span>
+          </div>
+          <div class="flex flex-col items-center py-3 px-2 gap-0.5">
+            <span class="font-michroma text-xs text-gold font-bold">0</span>
+            <span class="font-michroma text-[.5rem] tracking-widest text-gray-500 uppercase">Compromiso</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -253,128 +342,429 @@
   </div>
 
   <div class="max-w-6xl mx-auto relative z-10">
-    <div class="text-center mb-16 reveal">
+    <div class="text-center mb-14 reveal">
       <p class="font-michroma text-[.64rem] tracking-[.3em] sec-label text-gold uppercase mb-3">Qué Construimos</p>
       <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">Nuestros Servicios</h2>
       <p class="font-sans text-sm text-gray-300 max-w-xl mx-auto leading-relaxed">
-        No vendemos paquetes genéricos. Identificamos qué tipo de presencia digital necesitas y construimos exactamente eso.
+        No vendemos paquetes genéricos. Cuatro núcleos de servicio diseñados para cada etapa digital de tu negocio.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-6">
+    <!-- Tab navigation -->
+    <div class="reveal mb-10">
+      <div class="flex flex-wrap gap-2 justify-center" id="nucleos-tabs">
+        <button onclick="switchNucleo(0)" class="nucleo-tab active-tab font-michroma text-[.62rem] tracking-[.14em] uppercase px-5 py-3 transition-all duration-300" data-idx="0">
+          <span class="opacity-40 mr-2">N1</span>Web Informativa
+        </button>
+        <button onclick="switchNucleo(1)" class="nucleo-tab font-michroma text-[.62rem] tracking-[.14em] uppercase px-5 py-3 transition-all duration-300" data-idx="1">
+          <span class="opacity-40 mr-2">N2</span>Web Comercial
+        </button>
+        <button onclick="switchNucleo(2)" class="nucleo-tab font-michroma text-[.62rem] tracking-[.14em] uppercase px-5 py-3 transition-all duration-300" data-idx="2">
+          <span class="opacity-40 mr-2">N3</span>A Medida
+        </button>
+        <button onclick="switchNucleo(3)" class="nucleo-tab font-michroma text-[.62rem] tracking-[.14em] uppercase px-5 py-3 transition-all duration-300" data-idx="3">
+          <span class="opacity-40 mr-2">N4</span>Rediseño
+        </button>
+      </div>
+    </div>
 
-      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal">
-        <div class="flex items-start justify-between">
-          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+    <!-- Nucleo panels -->
+    <div id="nucleo-panels">
+
+      <!-- NUCLEO 1 -->
+      <div class="nucleo-panel reveal" data-panel="0">
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <!-- Left: info -->
+          <div class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 h-full">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-michroma text-[.58rem] tracking-[.22em] text-gold uppercase mb-2">Núcleo 1 · Precio Base</p>
+                <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Web Informativa</h3>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="font-michroma text-3xl font-bold g-text">350<span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:1.6rem;margin-left:2px">€</span></span>
+                <p class="font-michroma text-[.52rem] tracking-widest text-gray-400 uppercase mt-0.5">Precio Base</p>
+              </div>
+            </div>
+
+            <p class="font-sans text-sm text-gray-300 leading-relaxed border-l-2 border-gold border-opacity-30 pl-4">
+              Tu tarjeta de visita digital, abierta 24/7. El paquete diseñado para negocios que necesitan existir en internet de forma <strong class="text-gray-100">profesional, rápida y directa</strong>.
+            </p>
+
+            <div>
+              <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-4">¿Qué incluye la Base?</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Estructura One-Page</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Una única página larga de alto impacto visual con secciones: portada, servicios y quiénes somos.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Contacto Directo</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Teléfono y email en tamaño grande para que te llamen a un clic. <span class="text-gray-500 italic">(Sin formulario incluido)</span></p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Legalidad y Rendimiento</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Textos legales obligatorios integrados y máxima velocidad de carga.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-g text-center mt-auto">Pedir Demo de este Núcleo →</a>
           </div>
-          <span class="font-michroma text-[.57rem] tracking-widest text-volt uppercase glass-v px-2.5 py-1 rounded-sm">Posicionamiento</span>
-        </div>
-        <div>
-          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Informativa</h3>
-          <p class="font-sans text-xs text-gray-300 leading-relaxed">
-            Para <strong class="text-gray-100">despachos, clínicas y estudios</strong> que necesitan presencia digital sólida. Tu competencia tiene webs de hace 8 años que tardan 6 segundos en cargar. Nosotros te entregamos una plataforma moderna con estilo propio y rápida.
-          </p>
-        </div>
-        <div class="flex flex-col gap-2 mt-auto">
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">SEO técnico incluido</span>
+
+          <!-- Right: extras + calculator -->
+          <div class="flex flex-col gap-5">
+            <div class="glass-v rounded-sm p-7 flex flex-col gap-5">
+              <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Extras Disponibles</p>
+              <p class="font-sans text-xs text-gray-400 leading-relaxed">Selecciona los que necesites para ver el precio final:</p>
+
+              <div class="flex flex-col gap-3" id="extras-n1">
+                <label class="extra-toggle flex items-center justify-between gap-4 glass rounded-sm px-4 py-3.5 cursor-pointer hover:border-gold hover:border-opacity-30 transition-all duration-300" style="border:1px solid rgba(255,255,255,.06)">
+                  <div class="flex items-start gap-3 flex-1">
+                    <input type="checkbox" class="extra-check mt-0.5 accent-gold w-3.5 h-3.5 flex-shrink-0" data-price="60" data-nucleo="1" />
+                    <div>
+                      <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Motor de Formulario Integrado</p>
+                      <p class="font-sans text-xs text-gray-400 mt-0.5 leading-relaxed">Formulario para que los clientes te dejen sus datos directamente desde la web.</p>
+                    </div>
+                  </div>
+                  <span class="font-michroma text-sm text-gold flex-shrink-0">+60<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+                </label>
+
+                <label class="extra-toggle flex items-center justify-between gap-4 glass rounded-sm px-4 py-3.5 cursor-pointer hover:border-gold hover:border-opacity-30 transition-all duration-300" style="border:1px solid rgba(255,255,255,.06)">
+                  <div class="flex items-start gap-3 flex-1">
+                    <input type="checkbox" class="extra-check mt-0.5 accent-gold w-3.5 h-3.5 flex-shrink-0" data-price="35" data-nucleo="1" />
+                    <div>
+                      <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Botón WhatsApp Flotante</p>
+                      <p class="font-sans text-xs text-gray-400 mt-0.5 leading-relaxed">Acceso directo en pantalla para que te abran un chat al instante.</p>
+                    </div>
+                  </div>
+                  <span class="font-michroma text-sm text-gold flex-shrink-0">+35<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+                </label>
+              </div>
+
+              <!-- Price display -->
+              <div class="glass rounded-sm px-5 py-4 flex items-center justify-between" style="border-color:rgba(212,175,55,.2)">
+                <div>
+                  <p class="font-michroma text-[.58rem] tracking-widest text-gray-400 uppercase">Total estimado</p>
+                  <p class="font-sans text-xs text-gray-400 mt-0.5">+ Dominio/Hosting <a href="#hosting" class="text-gold hover:underline">ver opciones</a></p>
+                </div>
+                <div class="text-right">
+                  <span class="font-michroma text-3xl font-bold g-text" id="total-n1"><span class="num-part">350</span><span style="font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:600;margin-left:2px">€</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-sm px-5 py-4 flex items-start gap-3">
+              <svg class="w-4 h-4 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p class="font-sans text-xs text-gray-300 leading-relaxed">Ideal para: despachos, clínicas, estudios, autónomos, talleres y cualquier negocio que necesite presencia profesional sin complicaciones.</p>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Core Web Vitals optimizados</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Diseño con identidad propia</span>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
-          <div>
-            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
-            <span class="font-michroma text-lg text-gold ml-2">250</span>
-            <span class="font-sans text-xs text-gray-400 ml-1">— 500€</span>
-          </div>
-          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
       </div>
 
-      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.1s; border-color:rgba(212,175,55,.22);">
-        <div class="flex items-start justify-between">
-          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      <!-- NUCLEO 2 -->
+      <div class="nucleo-panel reveal hidden" data-panel="1">
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <div class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 h-full" style="border-color:rgba(212,175,55,.22);">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-michroma text-[.58rem] tracking-[.22em] text-gold uppercase mb-2">Núcleo 2 · Precio Base</p>
+                <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Web Comercial</h3>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="font-michroma text-3xl font-bold g-text">550<span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:1.6rem;margin-left:2px">€</span></span>
+                <p class="font-michroma text-[.52rem] tracking-widest text-gray-400 uppercase mt-0.5">Precio Base</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="rec-badge">★ Más Solicitado</span>
+            </div>
+
+            <p class="font-sans text-sm text-gray-300 leading-relaxed border-l-2 border-volt border-opacity-40 pl-4">
+              Diseñado para negocios que quieren usar su web para <strong class="text-gray-100">captar nuevos clientes activamente</strong>. La web deja de ser una tarjeta y se convierte en una herramienta de ventas.
+            </p>
+
+            <div>
+              <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-4">¿Qué incluye la Base?</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-volt" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Estructura Multi-Página</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Hasta 4 páginas independientes (Inicio, Servicios, Nosotros, Contacto).</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-volt" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Captación Activa Incluida</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Formulario inteligente con selección de servicios y botón WhatsApp flotante ya incluidos.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-volt" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Galería Visual + Mapa</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Sección dedicada a tus trabajos o catálogo, más mapa interactivo de Google integrado.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-g text-center mt-auto">Pedir Demo de este Núcleo →</a>
           </div>
-          <span class="font-michroma text-[.57rem] tracking-widest text-gold uppercase glass px-2.5 py-1 rounded-sm">Más Solicitado</span>
-        </div>
-        <div>
-          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web Comercial</h3>
-          <p class="font-sans text-xs text-gray-300 leading-relaxed">
-            Para <strong class="text-gray-100">reformas, inmobiliarias y gimnasios</strong>. Una web bonita no sirve de nada si no genera dinero. Optimizamos cada botón para capturar contactos reales.
-          </p>
-        </div>
-        <div class="glass-v rounded-sm px-4 py-3">
-          <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase mb-1">Aclaración importante</p>
-          <p class="font-sans text-xs text-gray-300 leading-relaxed">No es e-commerce. Es un catálogo de productos donde el cliente <strong class="text-gray-100">te contacta directamente</strong> para cerrar la venta. Tú gestionas la relación, no una tienda.</p>
-        </div>
-        <div class="flex flex-col gap-2 mt-auto">
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Formularios de captación optimizados</span>
+
+          <div class="flex flex-col gap-5">
+            <div class="glass-v rounded-sm p-7 flex flex-col gap-5">
+              <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Extras Disponibles</p>
+              <p class="font-sans text-xs text-gray-400 leading-relaxed">Selecciona los que necesites para ver el precio final:</p>
+
+              <div class="flex flex-col gap-3" id="extras-n2">
+                <label class="extra-toggle flex items-center justify-between gap-4 glass rounded-sm px-4 py-3.5 cursor-pointer hover:border-volt hover:border-opacity-30 transition-all duration-300" style="border:1px solid rgba(255,255,255,.06)">
+                  <div class="flex items-start gap-3 flex-1">
+                    <input type="checkbox" class="extra-check mt-0.5 w-3.5 h-3.5 flex-shrink-0" data-price="75" data-nucleo="2" />
+                    <div>
+                      <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Galería Dinámica Premium</p>
+                      <p class="font-sans text-xs text-gray-400 mt-0.5 leading-relaxed">Sistema avanzado para filtrar fotos (Ej: "Ver Baños", "Ver Cocinas") con efectos de cristal esmerilado.</p>
+                    </div>
+                  </div>
+                  <span class="font-michroma text-sm text-gold flex-shrink-0">+75<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+                </label>
+
+                <label class="extra-toggle flex items-center justify-between gap-4 glass rounded-sm px-4 py-3.5 cursor-pointer hover:border-volt hover:border-opacity-30 transition-all duration-300" style="border:1px solid rgba(255,255,255,.06)">
+                  <div class="flex items-start gap-3 flex-1">
+                    <input type="checkbox" class="extra-check mt-0.5 w-3.5 h-3.5 flex-shrink-0" data-price="60" data-nucleo="2" />
+                    <div>
+                      <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Página Adicional Independiente</p>
+                      <p class="font-sans text-xs text-gray-400 mt-0.5 leading-relaxed">Una página entera dedicada a un único servicio estrella. Precio por página.</p>
+                    </div>
+                  </div>
+                  <span class="font-michroma text-sm text-gold flex-shrink-0">+60<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+                </label>
+
+                <label class="extra-toggle flex items-center justify-between gap-4 glass rounded-sm px-4 py-3.5 cursor-pointer hover:border-volt hover:border-opacity-30 transition-all duration-300" style="border:1px solid rgba(255,255,255,.06)">
+                  <div class="flex items-start gap-3 flex-1">
+                    <input type="checkbox" class="extra-check mt-0.5 w-3.5 h-3.5 flex-shrink-0" data-price="120" data-nucleo="2" />
+                    <div>
+                      <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Copywriting Estratégico</p>
+                      <p class="font-sans text-xs text-gray-400 mt-0.5 leading-relaxed">Si no sabes qué textos poner, nosotros redactamos el contenido de tu web enfocado a vender.</p>
+                    </div>
+                  </div>
+                  <span class="font-michroma text-sm text-gold flex-shrink-0">+120<span style="font-family:'Montserrat',sans-serif;font-weight:600">€</span></span>
+                </label>
+              </div>
+
+              <div class="glass rounded-sm px-5 py-4 flex items-center justify-between" style="border-color:rgba(212,175,55,.2)">
+                <div>
+                  <p class="font-michroma text-[.58rem] tracking-widest text-gray-400 uppercase">Total estimado</p>
+                  <p class="font-sans text-xs text-gray-400 mt-0.5">+ Dominio/Hosting <a href="#hosting" class="text-gold hover:underline">ver opciones</a></p>
+                </div>
+                <div class="text-right">
+                  <span class="font-michroma text-3xl font-bold g-text" id="total-n2"><span class="num-part">550</span><span style="font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:600;margin-left:2px">€</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-sm px-5 py-4 flex items-start gap-3">
+              <svg class="w-4 h-4 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p class="font-sans text-xs text-gray-300 leading-relaxed">Ideal para: reformas del hogar, inmobiliarias, gimnasios, restaurantes y negocios que quieren convertir visitas en llamadas.</p>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">CTAs diseñados para convertir</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-volt opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Galería de productos/servicios</span>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
-          <div>
-            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
-            <span class="font-michroma text-lg text-gold ml-2">500</span>
-            <span class="font-sans text-xs text-gray-400 ml-1">— 850€</span>
-          </div>
-          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
       </div>
 
-      <div class="glass card-h rounded-sm p-8 flex flex-col gap-5 reveal" style="transition-delay:.2s">
-        <div class="flex items-start justify-between">
-          <div class="w-11 h-11 glass-v rounded-sm flex items-center justify-center">
-            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      <!-- NUCLEO 3 -->
+      <div class="nucleo-panel reveal hidden" data-panel="2">
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <div class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 h-full">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-michroma text-[.58rem] tracking-[.22em] text-gold uppercase mb-2">Núcleo 3 · Presupuesto</p>
+                <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Arquitectura a Medida</h3>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="font-michroma text-2xl font-bold g-text">Desde</span>
+                <span class="font-michroma text-3xl font-bold g-text block">1.200<span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:1.6rem;margin-left:2px">€</span></span>
+              </div>
+            </div>
+
+            <p class="font-sans text-sm text-gray-300 leading-relaxed border-l-2 border-gold border-opacity-30 pl-4">
+              Para empresas consolidadas que necesitan funciones exclusivas que <strong class="text-gray-100">no existen en el mercado estándar</strong>. Cada línea de código, escrita desde cero para ti.
+            </p>
+
+            <div>
+              <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-4">¿Qué incluye?</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Desarrollo Exclusivo</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Diseño de interfaz 100% único. Código escrito desde cero sin partir de ninguna base existente.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Estructura Escalable</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Páginas y funcionalidades adaptadas a las necesidades totales del proyecto, sin límites.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Animaciones de Alto Nivel</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Efectos visuales de ingeniería para destacar sobre cualquier competidor del sector.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-g text-center mt-auto">Solicitar Presupuesto →</a>
           </div>
-          <span class="font-michroma text-[.57rem] tracking-widest text-volt uppercase glass-v px-2.5 py-1 rounded-sm">Sin Límites</span>
+
+          <div class="flex flex-col gap-5">
+            <div class="glass-v rounded-sm p-7 flex flex-col gap-5">
+              <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Proceso de Presupuesto</p>
+              <div class="flex flex-col gap-4">
+                <div class="flex items-start gap-4">
+                  <span class="font-michroma text-[.7rem] text-gold w-6 flex-shrink-0">01</span>
+                  <p class="font-sans text-xs text-gray-300 leading-relaxed">Nos cuentas en detalle qué necesita tu empresa que no encuentra en el mercado estándar.</p>
+                </div>
+                <div class="flex items-start gap-4">
+                  <span class="font-michroma text-[.7rem] text-gold w-6 flex-shrink-0">02</span>
+                  <p class="font-sans text-xs text-gray-300 leading-relaxed">Analizamos la arquitectura técnica necesaria y te enviamos un presupuesto detallado en 48h.</p>
+                </div>
+                <div class="flex items-start gap-4">
+                  <span class="font-michroma text-[.7rem] text-gold w-6 flex-shrink-0">03</span>
+                  <p class="font-sans text-xs text-gray-300 leading-relaxed">Si lo apruebas, programamos la demo técnica gratuita antes de formalizar nada.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-sm p-6 flex flex-col gap-3" style="border-color:rgba(212,175,55,.18);">
+              <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase">Ejemplos de funciones exclusivas</p>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="glass-v rounded-sm px-3 py-2 font-sans text-xs text-gray-300">Panel de administración</div>
+                <div class="glass-v rounded-sm px-3 py-2 font-sans text-xs text-gray-300">Reservas online en tiempo real</div>
+                <div class="glass-v rounded-sm px-3 py-2 font-sans text-xs text-gray-300">Catálogos filtrables avanzados</div>
+                <div class="glass-v rounded-sm px-3 py-2 font-sans text-xs text-gray-300">Integraciones con APIs externas</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 class="font-michroma text-sm tracking-widest text-white uppercase mb-2">Web a Medida</h3>
-          <p class="font-sans text-xs text-gray-300 leading-relaxed">
-            Para <strong class="text-gray-100">empresas con necesidades únicas</strong>. Empezamos desde cero: sin plantillas, sin modelos de referencia. Escribimos el código para añadir exactamente las funciones que necesitas.
-          </p>
-        </div>
-        <div class="flex flex-col gap-2 mt-auto">
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Arquitectura diseñada desde cero</span>
+      </div>
+
+      <!-- NUCLEO 4 -->
+      <div class="nucleo-panel reveal hidden" data-panel="3">
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <div class="glass rounded-sm p-8 sm:p-10 flex flex-col gap-6 h-full">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-michroma text-[.58rem] tracking-[.22em] text-gold uppercase mb-2">Núcleo 4 · Evaluación</p>
+                <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Rediseño y Migración</h3>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="font-michroma text-sm font-bold text-gray-300 block">Precio según</span>
+                <span class="font-michroma text-lg font-bold g-text block">Núcleo Final</span>
+              </div>
+            </div>
+
+            <p class="font-sans text-sm text-gray-300 leading-relaxed border-l-2 border-gold border-opacity-30 pl-4">
+              Para negocios que ya tienen web, pero está anticuada, carga lento, no consigue clientes o <strong class="text-gray-100">no refleja la calidad real de su trabajo</strong>.
+            </p>
+
+            <div>
+              <p class="font-michroma text-[.6rem] tracking-widest text-gold uppercase mb-4">El Enfoque Olympo</p>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Demolición y Código Limpio</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">No parcheamos plantillas (Wix, WordPress). Extraemos tus contenidos y reescribimos desde cero con nuestra tecnología nativa.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Salto de Interfaz (UI)</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Tu web pasará de verse genérica a tener un impacto visual de alta gama aplicando nuestro diseño de élite.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-5 h-5 glass-v rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </span>
+                  <div>
+                    <p class="font-michroma text-[.65rem] tracking-widest text-white uppercase">Conservación SEO + Dominio</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed mt-0.5">Cuidamos tus enlaces actuales para no perder posición en Google. Seguimos usando tu dominio sin cortes de servicio.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-g text-center mt-auto">Evaluar mi Web Actual →</a>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Funcionalidades a petición</span>
+
+          <div class="flex flex-col gap-5">
+            <div class="glass-v rounded-sm p-7 flex flex-col gap-5">
+              <p class="font-michroma text-[.6rem] tracking-widest text-volt uppercase">Fórmula de Precio</p>
+              <p class="font-sans text-xs text-gray-400 leading-relaxed">Al ser una reconstrucción, el precio depende del <strong class="text-gray-100">Núcleo en que se convierta tu web</strong> al finalizar:</p>
+
+              <div class="flex flex-col gap-3">
+                <div class="glass rounded-sm p-4 flex items-start gap-3" style="border-color:rgba(212,175,55,.18);">
+                  <span class="font-michroma text-[.65rem] text-gold font-bold flex-shrink-0 mt-0.5">N1</span>
+                  <div>
+                    <p class="font-michroma text-[.62rem] tracking-widest text-white uppercase mb-1">Reconstrucción como Web Informativa</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed">Si el resultado es una estructura estática y directa → tarifa del Núcleo 1 (350€) + coste de migración de datos.</p>
+                  </div>
+                </div>
+                <div class="glass rounded-sm p-4 flex items-start gap-3" style="border-color:rgba(139,92,246,.18);">
+                  <span class="font-michroma text-[.65rem] text-volt font-bold flex-shrink-0 mt-0.5">N2</span>
+                  <div>
+                    <p class="font-michroma text-[.62rem] tracking-widest text-white uppercase mb-1">Reconstrucción como Web Comercial</p>
+                    <p class="font-sans text-xs text-gray-400 leading-relaxed">Si necesitas automatizaciones, galerías dinámicas o formularios de captación → pasa al Núcleo 2 (550€).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-sm px-5 py-4 flex items-start gap-3">
+              <svg class="w-4 h-4 text-volt flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p class="font-sans text-xs text-gray-300 leading-relaxed">Al mejorar la velocidad de carga (Core Web Vitals), Google te posicionará aún mejor de lo que ya estás. Migramos y mejoramos a la vez.</p>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="w-1 h-1 rounded-full bg-gold opacity-60"></span>
-            <span class="font-sans text-xs text-gray-300">Código documentado y entregado</span>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-gold border-opacity-10 flex items-center justify-between">
-          <div>
-            <span class="font-michroma text-[.6rem] text-gray-400 tracking-widest uppercase">Desde</span>
-            <span class="font-michroma text-lg text-gold ml-2">1.200</span>
-            <span class="font-sans text-xs text-gray-400 ml-1">— 2.500€+</span>
-          </div>
-          <a href="#contacto" class="font-michroma text-xs text-gold tracking-widest hover:text-white transition-colors duration-300">Demo →</a>
         </div>
       </div>
 
@@ -477,7 +867,8 @@
         Estas bases son una pequeña guía técnica y visual de lo que incluirá tu web según lo que nos pidas. Navega por ellas para comprobar la velocidad de carga y la estructura antes de dar el paso.
       </p>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
         <a href="https://olympotgn.github.io/OlympoTGN---Resultados/demos/prototipo-abogados.html" class="glass rounded-sm overflow-hidden card-h group block relative" style="aspect-ratio:16/9">
           <div class="absolute top-4 right-4 z-10 glass-v px-3 py-1.5 rounded-sm border-volt">
             <span class="font-michroma text-[.55rem] tracking-widest text-gold uppercase">Desde 250<span class="font-sans font-medium text-[.6rem] ml-[1px]">€</span></span>
@@ -491,8 +882,22 @@
             <div class="mt-2 font-michroma text-[.6rem] text-volt tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ver Demo Técnica →</div>
           </div>
         </a>
+
+        <a href="https://olympotgn.github.io/OlympoTGN---Resultados/demos/prototipo-reformas.html" class="glass rounded-sm overflow-hidden card-h group block relative" style="aspect-ratio:16/9; transition-delay: .1s;">
+          <div class="absolute top-4 right-4 z-10 glass-v px-3 py-1.5 rounded-sm" style="border-color: rgba(212,175,55,.3);">
+            <span class="font-michroma text-[.55rem] tracking-widest text-volt uppercase">Desde 500<span class="font-sans font-medium text-[.6rem] ml-[1px]">€</span></span>
+          </div>
+          <div class="port-placeholder h-full flex flex-col items-center justify-center gap-3 p-8">
+            <div class="w-12 h-12 glass rounded-sm flex items-center justify-center transition-transform duration-500 group-hover:scale-110" style="border-color: rgba(139,92,246,.3);">
+              <svg class="w-5 h-5 text-volt" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </div>
+            <p class="font-michroma text-[.7rem] tracking-widest text-white uppercase text-center mt-1">Reformas del Hogar</p>
+            <p class="font-sans text-xs text-gray-300 text-center">Web Comercial</p>
+            <div class="mt-2 font-michroma text-[.6rem] text-gold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ver Demo Técnica →</div>
+          </div>
+        </a>
+
       </div>
-    </div>
 
     <div class="mb-10 reveal">
       <div class="flex items-center justify-between border-b border-volt border-opacity-20 pb-4 mb-8">
@@ -919,9 +1324,10 @@
         <select class="f-input" id="c-tipo" name="tipo" style="background:rgba(10,10,10,.92);">
           <option value="demo" selected>⚡ Solicitar una demo (gratis, sin compromiso)</option>
           <option value="">— Tengo claro el tipo de web —</option>
-          <option>Web Informativa (despachos, clínicas, estudios...)</option>
-          <option>Web Comercial (reformas, inmobiliaria, gimnasio...)</option>
-          <option>Web a Medida (necesidades específicas)</option>
+          <option>N1 · Web Informativa (350€ base)</option>
+          <option>N2 · Web Comercial (550€ base)</option>
+          <option>N3 · Arquitectura a Medida (desde 1.200€)</option>
+          <option>N4 · Rediseño y Migración (precio según evaluación)</option>
           <option>No lo tengo claro aún</option>
           <option>Me gustaría consultar dudas</option>
         </select>
@@ -1046,6 +1452,61 @@
       icon.style.transform = 'rotate(90deg)';
     }
   }
+</script>
+
+<script>
+  // Nucleo tabs
+  function switchNucleo(idx) {
+    document.querySelectorAll('.nucleo-tab').forEach((t, i) => {
+      t.classList.toggle('active-tab', i === idx);
+    });
+    document.querySelectorAll('.nucleo-panel').forEach((p, i) => {
+      p.classList.toggle('hidden', i !== idx);
+    });
+  }
+
+  // Extra price calculators
+  function calcExtras(nucleo, base) {
+    const checks = document.querySelectorAll(`.extra-check[data-nucleo="${nucleo}"]`);
+    let total = base;
+    checks.forEach(c => {
+      if (c.checked) {
+        const val = Number(c.getAttribute('data-price'));
+        if (!isNaN(val)) total += val;
+      }
+    });
+    const el = document.getElementById(`total-n${nucleo}`);
+    if (el) {
+      // Render number and euro sign in separate spans to avoid font glyph issues
+      el.innerHTML = '<span class="num-part">' + total + '</span><span class="eur-part" style="font-family:\'Montserrat\',sans-serif;font-size:1.6rem;font-weight:600;margin-left:2px">€</span>';
+    }
+  }
+
+  document.querySelectorAll('.extra-check').forEach(c => {
+    c.addEventListener('change', () => {
+      const n = c.dataset.nucleo;
+      const bases = { '1': 350, '2': 550 };
+      calcExtras(n, bases[n] || 0);
+    });
+  });
+</script>
+
+<script>
+  // Cookie banner
+  const cookieBanner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+
+  function hideCookie() {
+    cookieBanner.classList.remove('visible');
+    setTimeout(() => cookieBanner.style.display = 'none', 500);
+  }
+
+  if (!localStorage.getItem('oly-cookies')) {
+    setTimeout(() => cookieBanner.classList.add('visible'), 800);
+  }
+  acceptBtn.addEventListener('click', () => { localStorage.setItem('oly-cookies', 'accepted'); hideCookie(); });
+  rejectBtn.addEventListener('click', () => { localStorage.setItem('oly-cookies', 'necessary'); hideCookie(); });
 </script>
 
 <script>
