@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LUMINA Real Estate — Exclusividad que Trasciende</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --obsidian:#070B19;
+  --obsidian2:#0B1025;
+  --obsidian3:#0f1530;
+  --pearl:#F8F9FA;
+  --slate:#9CA3AF;
+  --copper:#C5A267;
+  --copper-light:#D4B97E;
+  --copper-dim:rgba(197,162,103,0.15);
+  --ice:#E0F2FE;
+  --glass-bg:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.09);
+  --glass-border-copper:rgba(197,162,103,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--obsidian);}
+body{font-family:'Montserrat',sans-serif;background:var(--obsidian);color:var(--pearl);overflow-x:hidden;cursor:none;}
+
+/* NOISE GRAIN */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.022;pointer-events:none;z-index:1;mix-blend-mode:overlay;}
+
+/* CUSTOM CURSOR */
+#cur{position:fixed;width:9px;height:9px;background:var(--copper);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s,opacity .25s;}
+#cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(197,162,103,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+
+/* TYPOGRAPHY */
+h1,h2,h3,.playfair{font-family:'Playfair Display',serif;}
+
+/* COPPER TEXT */
+.copper-text{background:linear-gradient(135deg,var(--copper) 0%,var(--copper-light) 50%,var(--ice) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.copper-text-simple{background:linear-gradient(90deg,var(--copper),var(--copper-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* GLASS */
+.glass{background:var(--glass-bg);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);border:1px solid var(--glass-border);}
+.glass-copper{background:rgba(197,162,103,.045);backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);border:1px solid var(--glass-border-copper);}
+.glass-dark{background:rgba(7,11,25,.65);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.07);}
+.glass-strong{background:rgba(7,11,25,.82);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);border:1px solid rgba(197,162,103,.15);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:transparent;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(7,11,25,.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom-color:rgba(255,255,255,.07);}
+.nav-link{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(248,249,250,.5);text-decoration:none;position:relative;padding-bottom:3px;transition:color .3s;}
+.nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--copper),var(--ice));transition:width .35s cubic-bezier(.25,1,.5,1);}
+.nav-link:hover{color:var(--copper-light);}
+.nav-link:hover::after{width:100%;}
+
+/* HERO */
+#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop') center/cover no-repeat;will-change:transform;}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(7,11,25,.90) 0%,rgba(11,16,37,.76) 55%,rgba(7,11,25,.94) 100%);}
+.hero-radial{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 65% 55% at 18% 58%,rgba(197,162,103,.09) 0%,transparent 65%),radial-gradient(ellipse 40% 35% at 82% 20%,rgba(224,242,254,.05) 0%,transparent 60%);}
+
+/* SEARCH BAR */
+.search-bar{background:rgba(255,255,255,.06);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);border:1px solid rgba(255,255,255,.12);border-top:1px solid rgba(255,255,255,.22);}
+.search-input{background:transparent;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:.8rem;letter-spacing:.04em;color:var(--pearl);width:100%;cursor:none;}
+.search-input::placeholder{color:rgba(248,249,250,.28);}
+.search-divider{width:1px;background:rgba(255,255,255,.1);align-self:stretch;}
+
+/* BUTTONS */
+.btn-copper{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:500;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--obsidian);background:linear-gradient(90deg,var(--copper),var(--copper-light));padding:.85rem 2.2rem;border:none;cursor:none;position:relative;overflow:hidden;transition:box-shadow .4s,transform .3s;}
+.btn-copper::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.22) 50%,rgba(255,255,255,0) 100%);transform:translateX(-100%);transition:transform .6s;}
+.btn-copper:hover::before{transform:translateX(100%);}
+.btn-copper:hover{box-shadow:0 0 35px rgba(197,162,103,.35),0 0 70px rgba(197,162,103,.12);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:400;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);background:transparent;padding:.65rem 1.5rem;border:1px solid rgba(197,162,103,.3);cursor:none;transition:background .3s,border-color .3s,color .3s;}
+.btn-ghost:hover{background:rgba(197,162,103,.07);border-color:rgba(197,162,103,.6);color:var(--copper-light);}
+
+/* FILTER BUTTONS */
+.filter-btn{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1.5rem;border:1px solid rgba(197,162,103,.2);color:rgba(156,163,175,.6);background:transparent;cursor:none;transition:all .3s;}
+.filter-btn.active,.filter-btn:hover{background:rgba(197,162,103,.1);border-color:rgba(197,162,103,.5);color:var(--copper-light);}
+
+/* PROPERTY CARDS */
+.prop-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-top:1px solid rgba(197,162,103,.15);overflow:hidden;transition:border-color .4s,box-shadow .4s,transform .4s,opacity .45s;}
+.prop-card:hover{border-color:rgba(197,162,103,.32);box-shadow:0 0 50px rgba(197,162,103,.08),0 24px 48px rgba(0,0,0,.5);transform:translateY(-7px);}
+.prop-img-wrap{overflow:hidden;height:240px;position:relative;}
+.prop-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.25,1,.5,1);}
+.prop-card:hover .prop-img-wrap img{transform:scale(1.08);}
+.prop-badge{position:absolute;top:14px;left:14px;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .85rem;background:rgba(197,162,103,.92);color:var(--obsidian);font-weight:600;}
+.prop-fav{position:absolute;top:14px;right:14px;width:32px;height:32px;background:rgba(7,11,25,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,border-color .3s;}
+.prop-fav:hover{background:rgba(197,162,103,.15);border-color:rgba(197,162,103,.4);}
+.prop-fav.liked svg{stroke:var(--copper);fill:rgba(197,162,103,.3);}
+
+/* LINES & DECORATORS */
+.copper-line{width:50px;height:1px;background:linear-gradient(90deg,var(--copper),transparent);}
+.copper-line-center{width:50px;height:1px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--copper),transparent);}
+.section-rule{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(197,162,103,.12),rgba(224,242,254,.07),transparent);}
+.section-num{font-family:'Playfair Display',serif;font-style:italic;font-size:.65rem;letter-spacing:.15em;color:rgba(197,162,103,.32);}
+
+/* COUNTERS */
+.counter-card{background:rgba(255,255,255,.025);border:1px solid rgba(197,162,103,.12);border-top:1px solid rgba(197,162,103,.28);padding:2rem 1.8rem;text-align:center;transition:border-color .4s,transform .4s,box-shadow .4s;}
+.counter-card:hover{border-color:rgba(197,162,103,.3);transform:translateY(-4px);box-shadow:0 0 40px rgba(197,162,103,.07);}
+
+/* MAP */
+#googleMap{width:100%;height:520px;border-radius:2px;filter:grayscale(60%) brightness(0.7) hue-rotate(195deg) saturate(1.4);}
+.map-ui-overlay{position:absolute;inset:0;pointer-events:none;z-index:3;}
+
+/* GALLERY LIGHTBOX */
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 220px;gap:6px;}
+.gallery-item{overflow:hidden;position:relative;cursor:none;}
+.gallery-item:first-child{grid-row:1/3;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,1,.5,1),filter .5s;}
+.gallery-item:hover img{transform:scale(1.06);filter:brightness(.75);}
+.gallery-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;background:rgba(7,11,25,.3);transition:opacity .4s;}
+.gallery-item:hover .gallery-hover{opacity:1;}
+
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;z-index:2000;background:rgba(4,7,16,.97);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:2rem;}
+#lightbox.open{display:flex;}
+#lightboxImg{max-width:90vw;max-height:85vh;object-fit:contain;border:1px solid rgba(197,162,103,.2);}
+#lightboxClose{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s;}
+#lightboxClose:hover{background:rgba(197,162,103,.12);border-color:rgba(197,162,103,.4);}
+#lightboxCaption{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.14em;color:rgba(248,249,250,.45);white-space:nowrap;}
+
+/* PROPERTY MODAL */
+#propModal{position:fixed;inset:0;z-index:1500;background:rgba(4,7,16,.95);backdrop-filter:blur(24px);display:none;overflow-y:auto;padding:5rem 2rem 3rem;}
+#propModal.open{display:block;}
+.modal-close{position:fixed;top:1.5rem;right:1.5rem;z-index:1600;width:44px;height:44px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:none;transition:all .3s;}
+.modal-close:hover{background:rgba(197,162,103,.12);border-color:rgba(197,162,103,.4);}
+.modal-img-grid{display:grid;grid-template-columns:2fr 1fr;gap:4px;height:380px;margin-bottom:2.5rem;}
+.modal-img-grid img{width:100%;height:100%;object-fit:cover;}
+
+/* TESTIMONIALS */
+.testimonial-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-left:2px solid var(--copper);padding:2rem;transition:border-color .4s,transform .4s;}
+.testimonial-card:hover{border-color:rgba(197,162,103,.25);border-left-color:var(--copper-light);transform:translateY(-3px);}
+
+/* MULTI-STEP FORM */
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;transition:all .4s;}
+.step-dot.active{background:var(--copper);color:var(--obsidian);}
+.step-dot.inactive{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(156,163,175,.5);}
+.step-dot.done{background:rgba(197,162,103,.2);border:1px solid var(--copper);color:var(--copper);}
+.step-line{width:40px;height:1px;background:rgba(255,255,255,.1);transition:background .4s;}
+.step-line.done{background:rgba(197,162,103,.4);}
+.intent-btn{padding:1.2rem 1.8rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,249,250,.5);cursor:none;text-align:center;transition:all .35s;}
+.intent-btn:hover,.intent-btn.selected{background:rgba(197,162,103,.08);border-color:rgba(197,162,103,.4);color:var(--copper-light);}
+.intent-btn.selected{border-color:var(--copper);}
+.intent-icon{font-size:1.4rem;display:block;margin-bottom:.5rem;}
+.form-input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.12);color:var(--pearl);font-family:'Montserrat',sans-serif;font-size:.85rem;letter-spacing:.04em;padding:.75rem 0;outline:none;transition:border-color .4s,box-shadow .4s;}
+.form-input::placeholder{color:rgba(248,249,250,.22);}
+.form-input:focus{border-bottom-color:var(--copper);box-shadow:0 2px 14px rgba(197,162,103,.12);}
+.form-select{width:100%;background:rgba(7,11,25,.75);border:none;border-bottom:1px solid rgba(255,255,255,.12);color:rgba(248,249,250,.5);font-family:'Montserrat',sans-serif;font-size:.85rem;padding:.75rem 0;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath fill='%23C5A267' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;transition:border-color .4s;cursor:none;}
+.form-select option{background:#070B19;}
+.form-select:focus{border-bottom-color:var(--copper);}
+.form-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.5);display:block;margin-bottom:2px;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(42px);transition:opacity .88s cubic-bezier(.22,1,.36,1),transform .88s cubic-bezier(.22,1,.36,1);}
+.reveal.revealed{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.22s;}.reveal-d3{transition-delay:.36s;}.reveal-d4{transition-delay:.52s;}
+
+/* HERO ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-a1{animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .3s both;}
+.hero-a2{animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .52s both;}
+.hero-a3{animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .72s both;}
+.hero-a4{animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .92s both;}
+.hero-a5{animation:fadeUp .9s cubic-bezier(.22,1,.36,1) 1.1s both;}
+
+/* SCROLL MOUSE */
+.scroll-mouse{width:20px;height:32px;border:1px solid rgba(197,162,103,.4);border-radius:10px;position:relative;display:flex;justify-content:center;}
+.scroll-mouse::after{content:'';position:absolute;top:5px;width:2px;height:5px;background:var(--copper);border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite;}
+@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1;}60%{transform:translateY(9px);opacity:0;}}
+
+/* MISC */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--obsidian);}
+::-webkit-scrollbar-thumb{background:rgba(197,162,103,.25);border-radius:2px;}
+
+/* TOAST */
+#toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:3000;opacity:0;transition:opacity .4s,transform .4s;pointer-events:none;}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media(max-width:768px){
+  body{cursor:auto;}
+  #cur,#cur-ring{display:none;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gallery-item:first-child{grid-column:1/3;grid-row:1;}
+  .modal-img-grid{grid-template-columns:1fr;height:auto;}
+  .modal-img-grid img:last-child{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast">
+  <div class="glass-dark" style="padding:.75rem 1.4rem;border-top:1px solid rgba(197,162,103,.3);display:flex;align-items:center;gap:.7rem;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg" style="font-size:.65rem;letter-spacing:.1em;color:rgba(248,249,250,.7);"></span>
+  </div>
+</div>
+
+<!-- DEMO BANNER -->
+<aside style="position:fixed;bottom:1.4rem;right:1.4rem;z-index:400;max-width:275px;">
+  <div class="glass-dark" style="padding:.9rem 1.1rem;border-top:1px solid rgba(197,162,103,.25);">
+    <p style="font-size:.57rem;line-height:1.78;letter-spacing:.04em;color:rgba(248,249,250,.48);">
+      ⚠ Prototipo de demostración · Empresa ficticia.<br>
+      Diseñado por <a href="https://olympotgn.github.io/OlympoTGN---Resultados/" target="_blank" rel="noopener" style="color:var(--copper);text-decoration:none;border-bottom:1px solid rgba(197,162,103,.35);padding-bottom:1px;" onmouseover="this.style.color='var(--copper-light)'" onmouseout="this.style.color='var(--copper)'">OlympoTGN</a>
+      como muestra del paquete<br>
+      <strong style="color:rgba(248,249,250,.8);font-weight:500;">N3 Arquitectura a Medida</strong>
+      <span class="copper-text-simple" style="font-weight:600;"> (Desde 1.200€)</span>
+    </p>
+  </div>
+</aside>
+
+<!-- PROPERTY MODAL -->
+<div id="propModal">
+  <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div id="modalContent" style="max-width:1100px;margin:0 auto;"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightboxClose" onclick="closeLightbox()" aria-label="Cerrar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt=""/>
+  <div id="lightboxCaption"></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px;">
+    <a href="#hero" style="text-decoration:none;">
+      <span class="playfair copper-text-simple" style="font-size:1.5rem;letter-spacing:.1em;font-style:italic;">Lumina</span>
+      <span style="font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.2);display:block;margin-top:-5px;padding-left:2px;font-family:'Montserrat',sans-serif;">Real Estate</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:2.5rem;">
+      <a href="#catalog" class="nav-link">Propiedades</a>
+      <a href="#gallery-sec" class="nav-link">Galería</a>
+      <a href="#map" class="nav-link">Mapa</a>
+      <a href="#testimonials" class="nav-link">Clientes</a>
+      <a href="#vip" class="btn-ghost" style="font-size:.57rem;padding:.55rem 1.2rem;">Contacto VIP</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-radial"></div>
+
+  <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:0 2rem;width:100%;padding-top:5rem;">
+    <div class="hero-a1" style="display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;">
+      <div class="copper-line"></div>
+      <span style="font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(197,162,103,.55);font-weight:400;">Inmobiliaria de Alto Standing · Desde 1997</span>
+    </div>
+    <h1 class="hero-a2 playfair" style="font-size:clamp(2.8rem,6.5vw,5.5rem);line-height:1.05;max-width:680px;margin-bottom:1.6rem;">
+      Exclusividad que<br>
+      <em class="copper-text" style="font-style:italic;">trasciende</em><br>
+      el espacio.
+    </h1>
+    <p class="hero-a3" style="font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(248,249,250,.48);max-width:460px;margin-bottom:3.5rem;">
+      Propiedades que no se anuncian. Clientes que no se identifican. Transacciones que no se comentan. Bienvenido a Lumina.
+    </p>
+
+    <!-- SEARCH BAR -->
+    <div class="hero-a4 search-bar" style="max-width:840px;padding:0;">
+      <div style="display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr 1px auto;align-items:stretch;">
+        <div style="padding:1.1rem 1.4rem;">
+          <div style="font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.5);margin-bottom:.3rem;">Ubicación</div>
+          <input type="text" placeholder="Madrid, Marbella, Ibiza…" class="search-input"/>
+        </div>
+        <div class="search-divider"></div>
+        <div style="padding:1.1rem 1.4rem;">
+          <div style="font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.5);margin-bottom:.3rem;">Tipo</div>
+          <select class="search-input" style="appearance:none;cursor:none;">
+            <option style="background:#070B19;">Villa, Ático, Finca…</option>
+            <option style="background:#070B19;">Villa</option>
+            <option style="background:#070B19;">Ático de lujo</option>
+            <option style="background:#070B19;">Finca rústica</option>
+          </select>
+        </div>
+        <div class="search-divider"></div>
+        <div style="padding:1.1rem 1.4rem;">
+          <div style="font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.5);margin-bottom:.3rem;">Precio máximo</div>
+          <select class="search-input" style="appearance:none;cursor:none;">
+            <option style="background:#070B19;">Sin límite</option>
+            <option style="background:#070B19;">Hasta 2M €</option>
+            <option style="background:#070B19;">Hasta 5M €</option>
+            <option style="background:#070B19;">+10M €</option>
+          </select>
+        </div>
+        <div class="search-divider"></div>
+        <div style="padding:.8rem 1rem;">
+          <button class="btn-copper" style="height:100%;white-space:nowrap;">
+            Buscar
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="hero-a5" style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:4rem 2rem 3rem;width:100%;">
+    <div style="display:flex;gap:3rem;flex-wrap:wrap;align-items:center;">
+      <div><div class="playfair copper-text-simple" style="font-size:1.9rem;">€2.4B+</div><div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.25rem;">En activos gestionados</div></div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,.08);"></div>
+      <div><div class="playfair copper-text-simple" style="font-size:1.9rem;">340+</div><div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.25rem;">Propiedades exclusivas</div></div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,.08);"></div>
+      <div><div class="playfair copper-text-simple" style="font-size:1.9rem;">27</div><div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.25rem;">Años de discreción</div></div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,.08);"></div>
+      <div><div class="playfair copper-text-simple" style="font-size:1.9rem;">98%</div><div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.25rem;">Satisfacción cliente</div></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.5;animation:fadeUp 1.5s .5s both;">
+    <div class="scroll-mouse"></div>
+    <span style="font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(197,162,103,.55);font-family:'Montserrat',sans-serif;">Explorar</span>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ ANIMATED COUNTERS ═══════════════════════ -->
+<section style="padding:5rem 2rem;max-width:1280px;margin:0 auto;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" id="countersGrid">
+    <div class="counter-card reveal">
+      <div class="playfair copper-text-simple" style="font-size:2.4rem;"><span class="counter" data-target="2400" data-suffix="M€">0</span></div>
+      <div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.5rem;line-height:1.6;">Volumen de ventas en 2024</div>
+    </div>
+    <div class="counter-card reveal reveal-d1">
+      <div class="playfair copper-text-simple" style="font-size:2.4rem;"><span class="counter" data-target="340" data-suffix="+">0</span></div>
+      <div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.5rem;line-height:1.6;">Propiedades exclusivas</div>
+    </div>
+    <div class="counter-card reveal reveal-d2">
+      <div class="playfair copper-text-simple" style="font-size:2.4rem;"><span class="counter" data-target="27" data-suffix="">0</span></div>
+      <div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.5rem;line-height:1.6;">Años de trayectoria</div>
+    </div>
+    <div class="counter-card reveal reveal-d3">
+      <div class="playfair copper-text-simple" style="font-size:2.4rem;"><span class="counter" data-target="98" data-suffix="%">0</span></div>
+      <div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.5rem;line-height:1.6;">Índice de satisfacción</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ CATALOG ═══════════════════════ -->
+<section id="catalog" style="padding:8rem 2rem;max-width:1280px;margin:0 auto;">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;flex-wrap:wrap;gap:1.5rem;">
+    <div>
+      <div class="reveal" style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+        <span class="section-num">— 01 —</span>
+        <div class="copper-line"></div>
+        <span style="font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(197,162,103,.4);">Propiedades Selectas</span>
+      </div>
+      <h2 class="playfair reveal reveal-d1" style="font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.15;">
+        Residencias de <em class="copper-text" style="font-style:italic;">autor</em>
+      </h2>
+    </div>
+    <div class="reveal reveal-d2" style="display:flex;gap:.5rem;flex-wrap:wrap;" id="filterBtns">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="villa">Villas</button>
+      <button class="filter-btn" data-filter="atico">Áticos</button>
+      <button class="filter-btn" data-filter="finca">Fincas</button>
+      <button class="filter-btn" data-filter="penthouse">Penthouse</button>
+    </div>
+  </div>
+
+  <div id="propGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.8rem;position:relative;">
+
+    <!-- CARD 1 -->
+    <div class="prop-card reveal" data-cat="villa" data-id="1">
+      <div class="prop-img-wrap">
+        <span class="prop-badge">Villa</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Villa Serena" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Villa Serena</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Sierra de Madrid</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">4.2M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">820 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">6 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">Exclusiva</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(1)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="prop-card reveal reveal-d1" data-cat="atico" data-id="2">
+      <div class="prop-img-wrap">
+        <span class="prop-badge">Ático</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" alt="Ático Lumière" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Ático Lumière</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Paseo de la Castellana, Madrid</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">8.7M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">450 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">4 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">Exclusiva</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(2)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="prop-card reveal reveal-d2" data-cat="villa" data-id="3">
+      <div class="prop-img-wrap">
+        <span class="prop-badge">Villa</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop" alt="Villa Azur" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Villa Azur</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Marbella, Costa del Sol</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">12.5M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">1.400 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">8 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">Exclusiva</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(3)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="prop-card reveal reveal-d3" data-cat="finca" data-id="4">
+      <div class="prop-img-wrap">
+        <span class="prop-badge" style="background:rgba(224,242,254,.85);color:#070B19;">Finca</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop" alt="Finca Olivar del Rey" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Finca Olivar del Rey</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Extremadura, España</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">3.8M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">2.200 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">10 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">140 Ha.</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(4)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="prop-card reveal" data-cat="penthouse" data-id="5">
+      <div class="prop-img-wrap">
+        <span class="prop-badge">Penthouse</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop" alt="Penthouse Canalejas" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Penthouse Canalejas</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Centro Histórico, Madrid</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">18.3M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">680 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">5 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">Off-market</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(5)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="prop-card reveal reveal-d1" data-cat="atico" data-id="6">
+      <div class="prop-img-wrap">
+        <span class="prop-badge">Ático</span>
+        <button class="prop-fav" onclick="toggleFav(this,event)" aria-label="Favorito">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.6)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?q=80&w=800&auto=format&fit=crop" alt="Ático Ibiza Marina" loading="lazy"/>
+      </div>
+      <div style="padding:1.6rem;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;">
+          <div>
+            <h3 class="playfair" style="font-size:1.15rem;margin-bottom:.2rem;">Ático Ibiza Marina</h3>
+            <p style="font-size:.62rem;letter-spacing:.12em;color:rgba(156,163,175,.55);">Ibiza, Islas Baleares</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="playfair copper-text-simple" style="font-size:1.3rem;font-weight:600;">6.1M €</div>
+            <div style="font-size:.52rem;letter-spacing:.1em;color:rgba(156,163,175,.38);">Precio orientativo</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.07);margin-bottom:1rem;"></div>
+        <div style="display:flex;gap:1.5rem;margin-bottom:1.2rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">320 m²</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M2 4v16h20V4H2zM2 9h20"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">3 hab.</span></div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(197,162,103,.55)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:.62rem;color:rgba(156,163,175,.55);">Vista Mar</span></div>
+        </div>
+        <button class="btn-ghost" style="width:100%;justify-content:center;font-size:.56rem;" onclick="openModal(6)">Ver propiedad completa →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reveal" style="text-align:center;margin-top:3.5rem;">
+    <button class="btn-ghost">Ver portafolio completo</button>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ GALLERY ═══════════════════════ -->
+<section id="gallery-sec" style="padding:8rem 2rem;max-width:1280px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:4rem;">
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.2rem;">
+      <div class="copper-line-center"></div>
+      <span class="section-num">— 02 —</span>
+      <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--copper));"></div>
+    </div>
+    <h2 class="playfair reveal reveal-d1" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1rem;">
+      Galería de <em class="copper-text" style="font-style:italic;">excepciones</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-size:.85rem;font-weight:300;color:rgba(156,163,175,.45);max-width:440px;margin:0 auto;line-height:1.9;">Haga clic sobre cualquier imagen para una experiencia inmersiva</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1600&auto=format&fit=crop','Villa Serena · Sierra de Madrid')">
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=900&auto=format&fit=crop" alt="Villa Serena"/>
+      <div class="gallery-hover"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.9)" stroke-width="1.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop','Ático Lumière · Madrid')">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop" alt="Ático Lumière"/>
+      <div class="gallery-hover"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.9)" stroke-width="1.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop','Villa Azur · Marbella')">
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600&auto=format&fit=crop" alt="Villa Azur"/>
+      <div class="gallery-hover"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.9)" stroke-width="1.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1200&auto=format&fit=crop','Alcázar Costa Brava')">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=600&auto=format&fit=crop" alt="Alcázar"/>
+      <div class="gallery-hover"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.9)" stroke-width="1.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200&auto=format&fit=crop','Finca Olivar del Rey')">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=600&auto=format&fit=crop" alt="Finca"/>
+      <div class="gallery-hover"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(248,249,250,.9)" stroke-width="1.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ GOOGLE MAPS ═══════════════════════ -->
+<section id="map" style="padding:8rem 2rem;max-width:1280px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:4rem;">
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.2rem;">
+      <div class="copper-line-center"></div>
+      <span class="section-num">— 03 —</span>
+      <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--copper));"></div>
+    </div>
+    <h2 class="playfair reveal reveal-d1" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1rem;">
+      Zonas de <em class="copper-text" style="font-style:italic;">máxima exclusividad</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-size:.85rem;font-weight:300;color:rgba(156,163,175,.45);max-width:480px;margin:0 auto;line-height:1.9;">
+      Cartografía en tiempo real de nuestros enclaves más codiciados. Haga clic en cualquier marcador.
+    </p>
+  </div>
+
+  <div class="reveal" style="position:relative;">
+    <!-- GOOGLE MAPS EMBED (estilo oscuro via iframe) -->
+    <div style="position:relative;border:1px solid rgba(197,162,103,.12);overflow:hidden;border-radius:2px;">
+      <!-- Dark overlay to tint maps -->
+      <div style="position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(135deg,rgba(7,11,25,.18) 0%,transparent 40%),linear-gradient(225deg,rgba(7,11,25,.22) 0%,transparent 40%);mix-blend-mode:multiply;"></div>
+
+      <!-- Google Maps iframe — dark satellite style centered on Spain -->
+      <iframe
+        id="googleMap"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6196032!2d-3.7037902!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
+        style="width:100%;height:520px;border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de propiedades Lumina">
+      </iframe>
+
+      <!-- Floating glass panels over the map -->
+      <div class="map-ui-overlay">
+        <!-- Top-left status badge -->
+        <div class="glass-strong" style="position:absolute;top:1.2rem;left:1.2rem;padding:.85rem 1.2rem;display:flex;align-items:center;gap:.9rem;border-top:1px solid rgba(197,162,103,.3);">
+          <div style="width:7px;height:7px;background:var(--copper);border-radius:50%;box-shadow:0 0 10px rgba(197,162,103,.9);animation:pulse 2s infinite;"></div>
+          <span style="font-size:.57rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,249,250,.55);">6 propiedades activas</span>
+        </div>
+        <!-- Top-right filter -->
+        <div class="glass-strong" style="position:absolute;top:1.2rem;right:1.2rem;padding:.85rem 1.2rem;">
+          <div style="font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(197,162,103,.5);margin-bottom:.5rem;">Filtrar zonas</div>
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span style="font-size:.52rem;padding:.25rem .6rem;border:1px solid rgba(197,162,103,.35);color:var(--copper-light);">Madrid</span>
+            <span style="font-size:.52rem;padding:.25rem .6rem;border:1px solid rgba(255,255,255,.12);color:rgba(248,249,250,.4);">Marbella</span>
+            <span style="font-size:.52rem;padding:.25rem .6rem;border:1px solid rgba(255,255,255,.12);color:rgba(248,249,250,.4);">Ibiza</span>
+          </div>
+        </div>
+        <!-- Bottom property summary cards -->
+        <div style="position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;display:flex;gap:.8rem;overflow-x:auto;padding-bottom:2px;">
+          <div class="glass-strong" style="flex:0 0 auto;padding:.8rem 1rem;min-width:160px;cursor:none;border-top:1px solid rgba(197,162,103,.25);transition:border-color .3s;" onmouseover="this.style.borderTopColor='var(--copper)'" onmouseout="this.style.borderTopColor='rgba(197,162,103,.25)'">
+            <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,162,103,.55);margin-bottom:.3rem;">Sierra Madrid</div>
+            <div class="playfair" style="font-size:.95rem;color:var(--pearl);">4.2M €</div>
+            <div style="font-size:.52rem;color:rgba(156,163,175,.4);margin-top:.2rem;">Villa Serena · 820m²</div>
+          </div>
+          <div class="glass-strong" style="flex:0 0 auto;padding:.8rem 1rem;min-width:160px;cursor:none;border-top:1px solid rgba(197,162,103,.25);transition:border-color .3s;" onmouseover="this.style.borderTopColor='var(--copper)'" onmouseout="this.style.borderTopColor='rgba(197,162,103,.25)'">
+            <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,162,103,.55);margin-bottom:.3rem;">Madrid Capital</div>
+            <div class="playfair" style="font-size:.95rem;color:var(--pearl);">8.7M €</div>
+            <div style="font-size:.52rem;color:rgba(156,163,175,.4);margin-top:.2rem;">Ático Lumière · 450m²</div>
+          </div>
+          <div class="glass-strong" style="flex:0 0 auto;padding:.8rem 1rem;min-width:160px;cursor:none;border-top:1px solid rgba(197,162,103,.25);transition:border-color .3s;" onmouseover="this.style.borderTopColor='var(--copper)'" onmouseout="this.style.borderTopColor='rgba(197,162,103,.25)'">
+            <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,162,103,.55);margin-bottom:.3rem;">Marbella</div>
+            <div class="playfair" style="font-size:.95rem;color:var(--pearl);">12.5M €</div>
+            <div style="font-size:.52rem;color:rgba(156,163,175,.4);margin-top:.2rem;">Villa Azur · 1.400m²</div>
+          </div>
+          <div class="glass-strong" style="flex:0 0 auto;padding:.8rem 1rem;min-width:160px;cursor:none;border-top:1px solid rgba(197,162,103,.25);transition:border-color .3s;" onmouseover="this.style.borderTopColor='var(--copper)'" onmouseout="this.style.borderTopColor='rgba(197,162,103,.25)'">
+            <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,162,103,.55);margin-bottom:.3rem;">Ibiza</div>
+            <div class="playfair" style="font-size:.95rem;color:var(--pearl);">6.1M €</div>
+            <div style="font-size:.52rem;color:rgba(156,163,175,.4);margin-top:.2rem;">Ático Marina · 320m²</div>
+          </div>
+          <div class="glass-strong" style="flex:0 0 auto;padding:.8rem 1rem;min-width:160px;cursor:none;border-top:1px solid rgba(197,162,103,.25);transition:border-color .3s;" onmouseover="this.style.borderTopColor='var(--copper)'" onmouseout="this.style.borderTopColor='rgba(197,162,103,.25)'">
+            <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,162,103,.55);margin-bottom:.3rem;">Madrid Centro</div>
+            <div class="playfair" style="font-size:.95rem;color:var(--pearl);">18.3M €</div>
+            <div style="font-size:.52rem;color:rgba(156,163,175,.4);margin-top:.2rem;">Penthouse · 680m²</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes pulse{0%,100%{box-shadow:0 0 10px rgba(197,162,103,.9);}50%{box-shadow:0 0 18px rgba(197,162,103,.4),0 0 36px rgba(197,162,103,.2);}}
+</style>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
+<section id="testimonials" style="padding:8rem 2rem;max-width:1280px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:4.5rem;">
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.2rem;">
+      <div class="copper-line-center"></div>
+      <span class="section-num">— 04 —</span>
+      <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--copper));"></div>
+    </div>
+    <h2 class="playfair reveal reveal-d1" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1rem;">
+      El círculo <em class="copper-text" style="font-style:italic;">Lumina</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-size:.85rem;font-weight:300;color:rgba(156,163,175,.45);max-width:420px;margin:0 auto;line-height:1.9;">La discreción nos impide nombrarlos. La excelencia nos permite citarlos.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+    <div class="testimonial-card reveal">
+      <div style="display:flex;gap:.3rem;margin-bottom:1.2rem;">
+        <span style="color:var(--copper);font-size:.8rem;">★★★★★</span>
+      </div>
+      <p class="playfair" style="font-size:1rem;line-height:1.7;color:rgba(248,249,250,.7);font-style:italic;margin-bottom:1.5rem;">"Lumina encontró nuestra residencia en Sotogrande en menos de tres semanas. Sin publicidad, sin intermediarios visibles. Simplemente perfecto."</p>
+      <div style="display:flex;align-items:center;gap:.9rem;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(197,162,103,.3),rgba(197,162,103,.1));border:1px solid rgba(197,162,103,.3);display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:.85rem;color:var(--copper);">A</span>
+        </div>
+        <div>
+          <div style="font-size:.7rem;font-weight:500;letter-spacing:.06em;">A. Martínez-Borrell</div>
+          <div style="font-size:.58rem;color:rgba(156,163,175,.4);letter-spacing:.08em;">Empresario · Madrid</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-d1">
+      <div style="display:flex;gap:.3rem;margin-bottom:1.2rem;">
+        <span style="color:var(--copper);font-size:.8rem;">★★★★★</span>
+      </div>
+      <p class="playfair" style="font-size:1rem;line-height:1.7;color:rgba(248,249,250,.7);font-style:italic;margin-bottom:1.5rem;">"La inversión que Lumina nos presentó en Ibiza superó nuestras expectativas de rentabilidad. Un equipo que entiende lo que no se dice."</p>
+      <div style="display:flex;align-items:center;gap:.9rem;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(197,162,103,.3),rgba(197,162,103,.1));border:1px solid rgba(197,162,103,.3);display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:.85rem;color:var(--copper);">C</span>
+        </div>
+        <div>
+          <div style="font-size:.7rem;font-weight:500;letter-spacing:.06em;">C. von Hauptmann</div>
+          <div style="font-size:.58rem;color:rgba(156,163,175,.4);letter-spacing:.08em;">Family Office · Frankfurt</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-d2">
+      <div style="display:flex;gap:.3rem;margin-bottom:1.2rem;">
+        <span style="color:var(--copper);font-size:.8rem;">★★★★★</span>
+      </div>
+      <p class="playfair" style="font-size:1rem;line-height:1.7;color:rgba(248,249,250,.7);font-style:italic;margin-bottom:1.5rem;">"Vendimos nuestra finca en Extremadura por encima del precio de tasación. Sin visitas innecesarias. Un comprador, una operación, cero problemas."</p>
+      <div style="display:flex;align-items:center;gap:.9rem;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(197,162,103,.3),rgba(197,162,103,.1));border:1px solid rgba(197,162,103,.3);display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:.85rem;color:var(--copper);">I</span>
+        </div>
+        <div>
+          <div style="font-size:.7rem;font-weight:500;letter-spacing:.06em;">I. de Sousa-Figueiredo</div>
+          <div style="font-size:.58rem;color:rgba(156,163,175,.4);letter-spacing:.08em;">Inversora · Lisboa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ═══════════════════════ VIP MULTISTEP FORM ═══════════════════════ -->
+<section id="vip" style="padding:8rem 2rem;max-width:720px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:4.5rem;">
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.2rem;">
+      <div class="copper-line-center"></div>
+      <span class="section-num">— 05 —</span>
+      <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--copper));"></div>
+    </div>
+    <h2 class="playfair reveal reveal-d1" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1rem;">
+      Solicite una búsqueda <em class="copper-text" style="font-style:italic;">privada</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-size:.85rem;font-weight:300;color:rgba(156,163,175,.42);line-height:1.9;max-width:460px;margin:0 auto;">Un consultor personal se asignará a su caso. Discreción absoluta garantizada.</p>
+  </div>
+
+  <div class="glass-copper reveal reveal-d1" style="padding:3rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--copper),transparent);opacity:.75;"></div>
+
+    <!-- Step indicator -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:3rem;">
+      <div class="step-dot active" id="dot1">1</div>
+      <div class="step-line" id="line1"></div>
+      <div class="step-dot inactive" id="dot2">2</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <h3 class="playfair" style="font-size:1.3rem;text-align:center;margin-bottom:.6rem;">¿Qué está buscando?</h3>
+      <p style="font-size:.72rem;color:rgba(156,163,175,.45);text-align:center;margin-bottom:2.5rem;letter-spacing:.04em;">Seleccione su objetivo principal</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;">
+        <button class="intent-btn" data-intent="Comprar"><span class="intent-icon">🏡</span>Comprar</button>
+        <button class="intent-btn" data-intent="Vender"><span class="intent-icon">📋</span>Vender</button>
+        <button class="intent-btn" data-intent="Invertir"><span class="intent-icon">📈</span>Invertir</button>
+      </div>
+      <button id="nextBtn" class="btn-copper" style="width:100%;justify-content:center;opacity:.38;pointer-events:none;">
+        Siguiente
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" style="display:none;">
+      <h3 class="playfair" style="font-size:1.3rem;text-align:center;margin-bottom:.6rem;">Sus datos de contacto</h3>
+      <p style="font-size:.72rem;color:rgba(156,163,175,.45);text-align:center;margin-bottom:2.5rem;letter-spacing:.04em;">Información tratada con total confidencialidad</p>
+      <div style="display:grid;gap:2rem;margin-bottom:2rem;">
+        <div><label class="form-label" for="vip-name">Nombre completo</label><input id="vip-name" type="text" placeholder="Alejandro Martínez" class="form-input"/></div>
+        <div><label class="form-label" for="vip-email">Correo electrónico</label><input id="vip-email" type="email" placeholder="alejandro@correo.com" class="form-input"/></div>
+        <div><label class="form-label" for="vip-tel">Teléfono (opcional)</label><input id="vip-tel" type="tel" placeholder="+34 600 000 000" class="form-input"/></div>
+        <div>
+          <label class="form-label" for="vip-budget">Presupuesto estimado</label>
+          <select id="vip-budget" class="form-select">
+            <option value="" disabled selected>Seleccione un rango</option>
+            <option>500.000€ – 1.000.000€</option>
+            <option>1M€ – 3M€</option>
+            <option>3M€ – 7M€</option>
+            <option>7M€ – 15M€</option>
+            <option>+15M€ (Solo gestión privada)</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;">
+        <button id="backBtn" class="btn-ghost" style="flex:0 0 auto;">← Volver</button>
+        <button id="submitBtn" class="btn-copper" style="flex:1;justify-content:center;">
+          Enviar solicitud privada
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="stepSuccess" style="display:none;text-align:center;padding:1rem 0;">
+      <div style="width:58px;height:58px;border:1px solid rgba(197,162,103,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="playfair" style="font-size:1.4rem;margin-bottom:.8rem;">Solicitud recibida</h3>
+      <p style="font-size:.8rem;color:rgba(156,163,175,.45);line-height:1.9;max-width:340px;margin:0 auto;">Su consultor personal se pondrá en contacto en menos de 24 horas. Bienvenido al círculo Lumina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer style="border-top:1px solid rgba(255,255,255,.06);padding:4rem 2rem 2.5rem;">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:4rem;margin-bottom:3.5rem;">
+      <div>
+        <div class="playfair copper-text-simple" style="font-size:1.5rem;font-style:italic;display:block;margin-bottom:.3rem;">Lumina</div>
+        <div style="font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.16);margin-bottom:1.4rem;font-family:'Montserrat',sans-serif;">Real Estate</div>
+        <p style="font-size:.72rem;font-weight:300;line-height:1.9;color:rgba(156,163,175,.32);max-width:240px;">Veintisiete años de discreción, experiencia y resultados en el mercado inmobiliario de alto standing.</p>
+      </div>
+      <div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:.62rem;letter-spacing:.16em;color:rgba(197,162,103,.38);margin-bottom:1.4rem;text-transform:uppercase;">Servicios</h4>
+        <ul style="list-style:none;">
+          <li style="margin-bottom:.7rem;"><a href="#" style="font-size:.7rem;font-weight:300;color:rgba(156,163,175,.32);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--pearl)'" onmouseout="this.style.color='rgba(156,163,175,.32)'">Compra</a></li>
+          <li style="margin-bottom:.7rem;"><a href="#" style="font-size:.7rem;font-weight:300;color:rgba(156,163,175,.32);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--pearl)'" onmouseout="this.style.color='rgba(156,163,175,.32)'">Venta discreta</a></li>
+          <li style="margin-bottom:.7rem;"><a href="#" style="font-size:.7rem;font-weight:300;color:rgba(156,163,175,.32);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--pearl)'" onmouseout="this.style.color='rgba(156,163,175,.32)'">Inversión patrimonial</a></li>
+          <li><a href="#" style="font-size:.7rem;font-weight:300;color:rgba(156,163,175,.32);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--pearl)'" onmouseout="this.style.color='rgba(156,163,175,.32)'">Gestión de activos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:.62rem;letter-spacing:.16em;color:rgba(197,162,103,.38);margin-bottom:1.4rem;text-transform:uppercase;">Contacto</h4>
+        <div style="font-size:.7rem;font-weight:300;line-height:2;color:rgba(156,163,175,.28);">
+          <p>Calle Serrano 95, Madrid</p><p>28006, España</p>
+          <p style="margin-top:.7rem;">+34 91 000 00 00</p><p>privado@lumina.es</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-rule" style="margin-bottom:1.8rem;"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <p style="font-size:.56rem;letter-spacing:.1em;color:rgba(255,255,255,.14);">© 2025 Lumina Real Estate S.L. · Empresa ficticia · Prototipo de demostración</p>
+      <p style="font-size:.56rem;letter-spacing:.1em;color:rgba(255,255,255,.14);">
+        Diseñado e ingeniado por
+        <a href="https://olympotgn.github.io/OlympoTGN---Resultados/" target="_blank" rel="noopener" style="color:rgba(197,162,103,.48);text-decoration:none;border-bottom:1px solid rgba(197,162,103,.18);padding-bottom:1px;margin-left:4px;transition:color .2s,border-color .2s;" onmouseover="this.style.color='var(--copper-light)';this.style.borderBottomColor='var(--copper)'" onmouseout="this.style.color='rgba(197,162,103,.48)';this.style.borderBottomColor='rgba(197,162,103,.18)'">OlympoTGN</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('a,button,.prop-card,.gallery-item,.testimonial-card,input,select,textarea').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='16px';cur.style.height='16px';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(197,162,103,.7)';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='9px';cur.style.height='9px';ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(197,162,103,.45)';});
+});
+
+/* ── SCROLL REVEAL ── */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');revObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>80),{passive:true});
+
+/* ── PARALLAX HERO ── */
+const heroBg=document.getElementById('heroBg');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY<window.innerHeight)heroBg.style.transform=`translateY(${window.scrollY*.28}px) scale(1.05)`;
+},{passive:true});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});}
+  });
+});
+
+/* ── ANIMATED COUNTERS ── */
+function animateCounter(el){
+  const target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';
+  const duration=1800,step=target/duration*16;
+  let current=0;
+  const timer=setInterval(()=>{
+    current=Math.min(current+step,target);
+    el.textContent=Math.floor(current).toLocaleString('es-ES')+suffix;
+    if(current>=target)clearInterval(timer);
+  },16);
+}
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.counter').forEach(animateCounter);
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('#countersGrid').forEach(el=>counterObs.observe(el));
+
+/* ── PROPERTY FILTER ── */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.prop-card').forEach((card,i)=>{
+      const match=f==='all'||card.dataset.cat===f;
+      if(match){
+        card.style.display='';
+        setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)';},i*60);
+      }else{
+        card.style.opacity='0';card.style.transform='translateY(14px)';
+        setTimeout(()=>card.style.display='none',380);
+      }
+    });
+  });
+});
+
+/* ── FAVORITES ── */
+function toggleFav(btn,e){
+  e.stopPropagation();
+  btn.classList.toggle('liked');
+  showToast(btn.classList.contains('liked')?'Añadido a favoritos':'Eliminado de favoritos');
+}
+
+/* ── TOAST ── */
+function showToast(msg){
+  const t=document.getElementById('toast'),m=document.getElementById('toastMsg');
+  m.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(src,caption){
+  document.getElementById('lightboxImg').src=src;
+  document.getElementById('lightboxCaption').textContent=caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();closeModal();}});
+
+/* ── PROPERTY MODAL DATA ── */
+const propData={
+  1:{name:'Villa Serena',loc:'Sierra de Madrid',price:'4.2M €',m2:'820',hab:'6',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop',desc:'Residencia de autor en plena sierra madrileña, diseñada por el estudio Bjarke Ingels Group. Piscina interior y exterior, bodega climatizada para 2.000 botellas, sala de proyección privada, garaje para 8 vehículos y 8.000m² de parcela ajardinada.'},
+  2:{name:'Ático Lumière',loc:'Paseo de la Castellana, Madrid',price:'8.7M €',m2:'450',hab:'4',img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=600&auto=format&fit=crop',desc:'Ático dúplex en el edificio más singular del Paseo de la Castellana. Terraza de 180m² con vistas de 360° a Madrid, domótica KNX completa, concierge 24h y acabados en mármol Calacatta Gold.'},
+  3:{name:'Villa Azur',loc:'Marbella, Costa del Sol',price:'12.5M €',m2:'1.400',hab:'8',img:'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=600&auto=format&fit=crop',desc:'Villa de frente de mar en la Milla de Oro de Marbella. Primera línea de playa, embarcadero privado para eslora hasta 25m, staff residente, invernadero, campo de padel y helipad homologado.'},
+  4:{name:'Finca Olivar del Rey',loc:'Extremadura, España',price:'3.8M €',m2:'2.200',hab:'10',img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=600&auto=format&fit=crop',desc:'Finca cinegética de 140 hectáreas con cortijo restaurado del siglo XVIII. Gestión forestal certificada, cinco casas de invitados, palomar histórico, propia bodega con D.O. y helipad privado.'},
+  5:{name:'Penthouse Canalejas',loc:'Centro Histórico, Madrid',price:'18.3M €',m2:'680',hab:'5',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600&auto=format&fit=crop',desc:'La joya del complejo Four Seasons Madrid. El único penthouse privado del edificio. Azotea propia de 300m², acceso directo al spa del hotel, mayordomo personal 24h, cocina equipada por Gaggenau y bodega inteligente para 3.000 botellas.'},
+  6:{name:'Ático Ibiza Marina',loc:'Ibiza, Islas Baleares',price:'6.1M €',m2:'320',hab:'3',img:'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?q=80&w=1200&auto=format&fit=crop',img2:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop',desc:'Ático de nueva construcción sobre el puerto deportivo de Ibiza. Vista directa al mar y a Dalt Vila. Terraza de 120m², plaza en el pantalán para embarcación hasta 15m, acabados de arquitecto y certificación LEED Gold.'},
+};
+
+function openModal(id){
+  const d=propData[id];if(!d)return;
+  document.getElementById('modalContent').innerHTML=`
+    <div style="margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;">
+        <div style="width:40px;height:1px;background:linear-gradient(90deg,var(--copper),transparent);"></div>
+        <span style="font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.45);">Propiedad seleccionada</span>
+      </div>
+      <h2 class="playfair" style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:.4rem;">${d.name}</h2>
+      <p style="font-size:.7rem;letter-spacing:.12em;color:rgba(156,163,175,.5);">${d.loc}</p>
+    </div>
+    <div class="modal-img-grid">
+      <img src="${d.img}" alt="${d.name}" style="cursor:none;" onclick="openLightbox('${d.img}','${d.name}')"/>
+      <img src="${d.img2}" alt="${d.name} interior" style="cursor:none;" onclick="openLightbox('${d.img2}','${d.name} — Interior')"/>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;">
+      <div>
+        <div style="background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-top:1px solid rgba(197,162,103,.2);padding:1.8rem;margin-bottom:1.5rem;">
+          <div style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(197,162,103,.45);margin-bottom:.4rem;">Precio orientativo</div>
+          <div class="playfair copper-text-simple" style="font-size:2rem;font-weight:600;">${d.price}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);padding:1.2rem;text-align:center;">
+            <div class="playfair" style="font-size:1.4rem;color:var(--pearl);">${d.m2}</div>
+            <div style="font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.3rem;">m² construidos</div>
+          </div>
+          <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);padding:1.2rem;text-align:center;">
+            <div class="playfair" style="font-size:1.4rem;color:var(--pearl);">${d.hab}</div>
+            <div style="font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(156,163,175,.38);margin-top:.3rem;">Habitaciones</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(197,162,103,.42);margin-bottom:.8rem;">Descripción exclusiva</div>
+        <p style="font-size:.82rem;font-weight:300;line-height:1.95;color:rgba(248,249,250,.5);margin-bottom:2rem;">${d.desc}</p>
+        <button class="btn-copper" style="width:100%;justify-content:center;" onclick="closeModal();document.getElementById('vip').scrollIntoView({behavior:'smooth'});">
+          Solicitar información privada
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>`;
+  document.getElementById('propModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('propModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ── MULTISTEP FORM ── */
+let selectedIntent=null;
+document.querySelectorAll('.intent-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.intent-btn').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');selectedIntent=btn.dataset.intent;
+    const nb=document.getElementById('nextBtn');nb.style.opacity='1';nb.style.pointerEvents='auto';
+  });
+});
+
+function transStep(hide,show){
+  hide.style.opacity='0';hide.style.transform='translateY(10px)';
+  setTimeout(()=>{
+    hide.style.display='none';show.style.display='';
+    show.style.opacity='0';show.style.transform='translateY(10px)';show.style.transition='opacity .5s,transform .5s';
+    setTimeout(()=>{show.style.opacity='1';show.style.transform='translateY(0)';},30);
+  },280);
+}
+
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  if(!selectedIntent)return;
+  const d1=document.getElementById('dot1'),d2=document.getElementById('dot2'),l1=document.getElementById('line1');
+  d1.classList.remove('active');d1.classList.add('done');d1.textContent='✓';
+  d2.classList.remove('inactive');d2.classList.add('active');l1.classList.add('done');
+  transStep(document.getElementById('step1'),document.getElementById('step2'));
+});
+
+document.getElementById('backBtn').addEventListener('click',()=>{
+  const d1=document.getElementById('dot1'),d2=document.getElementById('dot2'),l1=document.getElementById('line1');
+  d2.classList.remove('active');d2.classList.add('inactive');d2.textContent='2';
+  d1.classList.remove('done');d1.classList.add('active');d1.textContent='1';l1.classList.remove('done');
+  transStep(document.getElementById('step2'),document.getElementById('step1'));
+});
+
+document.getElementById('submitBtn').addEventListener('click',()=>{
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Enviando…';btn.style.opacity='.6';btn.style.pointerEvents='none';
+  setTimeout(()=>transStep(document.getElementById('step2'),document.getElementById('stepSuccess')),1300);
+});
+</script>
+</body>
+</html>
